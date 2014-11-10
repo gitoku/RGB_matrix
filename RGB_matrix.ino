@@ -15,26 +15,34 @@ void setup() {
     pinMode(11, OUTPUT);
     pinMode(12, OUTPUT);
     pinMode(13, OUTPUT);
-}
 
-void loop() {
-    digitalWrite(0, LOW);
-    digitalWrite(1, LOW);
-    digitalWrite(2, LOW);
-    digitalWrite(3, LOW);
-    digitalWrite(4, LOW);
+    digitalWrite( 0, LOW);
+    digitalWrite( 1, LOW);
+    digitalWrite( 2, LOW);
+    digitalWrite( 3, LOW);
+    digitalWrite( 4, LOW);
     digitalWrite(10, LOW);
     digitalWrite(11, LOW);
     digitalWrite(12, LOW);
     digitalWrite(13, LOW);
+}
 
-    start:
+const int MODE0=0;
+const int MODE1=1;
+const int MODE2=2;
+
+int buttonState=1;
+void loop() {
+    static int next_mode = MODE0;
+    if(next_mode==MODE0)      next_mode = start1();
+    else if(next_mode==MODE1) next_mode = music1();
+    else if(next_mode==MODE2) next_mode = music2();
+}
+
+int start1(){
     delay(500);
-    int buttonState=1;
-
-    start1:
     buttonState=digitalRead(9); 
-    if (buttonState ==LOW ) {goto music1;}
+    if (buttonState ==LOW ) return MODE1;
     else{
         analogReference(INTERNAL);
         int x=analogRead(5);
@@ -51,15 +59,15 @@ void loop() {
         else{tone(8, 5100,100);}
         delay(1000);
     }
-    goto start1;
+    return MODE0;
+}
 
-
-    music1:
+int music1(){
     delay(500);
     buttonState=1;
     for (int thisNote = 0; thisNote < 82; thisNote++) { 
        buttonState=digitalRead(9); 
-       if (buttonState ==LOW ) {goto music2;}
+       if (buttonState ==LOW ) return MODE2;
        if(thisNote == 0){
             digitalWrite(5,LOW);
             digitalWrite(6,LOW);
@@ -150,9 +158,10 @@ void loop() {
         int pause = duration * 1.5; //音符の間で時間をあける
         delay(pause);
     }
-    goto music1;
+    return MODE1;
+}
 
-    music2:
+int music2(){
     delay(500);
     buttonState=1;
     digitalWrite(0, LOW);
@@ -167,7 +176,7 @@ void loop() {
 
     for (int thisNote = 0; thisNote < 68; thisNote++) {
         buttonState=digitalRead(9); 
-        if (buttonState ==LOW ) {goto start;}
+        if (buttonState ==LOW ) return MODE0;
         digitalWrite(5,HIGH);
         digitalWrite(6,HIGH);
         digitalWrite(7,HIGH);
@@ -180,6 +189,6 @@ void loop() {
         int pause = duration * 1.5;  //音符の間で時間をあける
         
         delay(pause);
-    } 
-    goto music2;  
+    }
+    return MODE2;
 }
