@@ -41,44 +41,72 @@
 }
 
 void loop(){
-    
+    demo1();
 }
 
+//700[ms]ごとに
+void demo1(){
+    byte pattern[9];
+    for(int i=0;i<9;i++){
+        setAll(pattern,OFF);
+        pattern[i]=WHITE;
+        lighting(pattern,700);
+    }
+}
 
 void tutorial(){
-    byte pattern[9];
+    byte pattern1[9];
 
-    pattern[0]=RED;    //[RED,GREEN,BLUE]で色を指定
-    pattern[1]=GREEN;
-    pattern[2]=CYAN;    //[CYAN,YELLOW,MAGENTA]から選択可能
-    pattern[3]=RED|BLUE; //(=MAGENTA)色の合成も可能
-    pattern[4]=WHITE;   //[WHITE]を選択可能
-    pattern[5]=RED|GREEN|BLUE;  //(=WHITE)
-    pattern[6]=OFF;     //光らせない時は[OFF]
-    pattern[7]=B001;    //２進数で直接指定でも可[RED:B001,GREEN:B010,BLUE:B100]
-    pattern[8]=B000;    //(=OFF)[0~8]の9個のLEDの色を指定可能
+    pattern1[0]=RED;    //[RED,GREEN,BLUE]で色を指定
+    pattern1[1]=GREEN;
+    pattern1[2]=CYAN;    //[CYAN,YELLOW,MAGENTA]から選択可能
+    pattern1[3]=RED|BLUE; //(=MAGENTA)色の合成も可能
+    pattern1[4]=WHITE;   //[WHITE]を選択可能
+    pattern1[5]=RED|GREEN|BLUE;  //(=WHITE)
+    pattern1[6]=OFF;     //光らせない時は[OFF]
+    pattern1[7]=B001;    //２進数で直接指定でも可[RED:B001,GREEN:B010,BLUE:B100]
+    pattern1[8]=B000;    //(=OFF)[0~8]の9個のLEDの色を指定可能
 
-    while(1) lighting(pattern,10);
+    while(1){
+        lighting(pattern1,1500);  //pattern1を1500[ms]出力し続ける
+
+        byte pattern2;
+        setAll(pattern2,RED);    //すべて同じ色ならsetAll()で設定可能
+        lighting(pattern2,800);     //pattern2を800[ms]出力し続ける
+
+        setAll(pattern2,OFF);     //pattern2に上書き
+        lightning(pattern2,2000);     //pattern2を2000[ms]出力し続ける
+    }
+}
+
+void setAll(byte data[],byte color){
+    for(int i=0;i<9;i++) data[i]=color;
+}
+
+void lighting(byte data[],int wait){
+    unsigned long begin = millis();
+    while( (millis()-begin)>wait ) lighting(data);
 }
 
 
-void lighting(byte data[],int interval){
-    static long last_time=0;
+void lighting(byte data[]){
+    const int INTERVAL=10;
+    static unsigned long last_time=0;
     
-    //前回実行(青色発光開始時)からinterval[ms]待つ
-    while( (millis()-last_time) > interval );
+    //前回実行(青色発光開始時)からINTERVAL[ms]待つ
+    while( (millis()-last_time) > INTERVAL );
 
     //red
     colorWrite(OFF);
     ledWrite(data,0);
     colorWrite(RED);
-    delay(interval);
+    delay(INTERVAL);
 
     //green
     colorWrite(OFF);
     ledWrite(data,1);
     colorWrite(GREEN);
-    delay(interval);
+    delay(INTERVAL);
 
     //BLUE
     colorWrite(OFF);
