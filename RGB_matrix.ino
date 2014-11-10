@@ -57,7 +57,7 @@ void tutorial(){
     pattern[7]=B001;    //２進数で直接指定でも可[RED:B001,GREEN:B010,BLUE:B100]
     pattern[8]=B000;    //(=OFF)[0~8]の9個のLEDの色を指定可能
 
-    while(1) lighting(pattern);
+    while(1) lighting(pattern,10);
 }
 
 
