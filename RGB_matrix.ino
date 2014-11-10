@@ -41,8 +41,9 @@
 }
 
 void loop(){
-
+    
 }
+
 
 void tutorial(){
     byte pattern[9];
@@ -86,15 +87,15 @@ void lighting(byte data[],int interval){
     last_time = millis();
 }
 
-
-//9個のLEDのON/OFF出力
-void ledWrite(byte data[],byte bit){
-    const int pins[]={0,1,2,3,4,10,11,12,13};
-    for(int i=0;i<9;i++) digiWrite( pins[i], !bitRead(data[i],bit));
-}
-
+//色ごとのLEDのON/OFF出力(Anode:正論理)
 void colorWrite(byte color){
     digiWrite( 5, color&RED);
     digiWrite( 6, color&GREEN);
     digiWrite( 7, color&BLUE);
+}
+
+//9個のLEDのON/OFF出力(Cathode:負論理)
+void ledWrite(byte data[],byte bit){
+    const int pins[]={0,1,2,3,4,10,11,12,13};
+    for(int i=0;i<9;i++) digiWrite( pins[i], !bitRead(data[i],bit));
 }
