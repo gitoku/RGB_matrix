@@ -27,47 +27,39 @@ void setup() {
     digitalWrite(13, LOW);
 }
 
-const int MODE0=0;
-const int MODE1=1;
-const int MODE2=2;
+const int MODE0=0,MODE1=1,MODE2=2;
 
-int buttonState=1;
 void loop() {
-    static int next_mode = MODE0;
-    if(next_mode==MODE0)      next_mode = start1();
-    else if(next_mode==MODE1) next_mode = music1();
-    else if(next_mode==MODE2) next_mode = music2();
+    static int mode = MODE0;
+
+    if(!digitalRead(9)) mode=(++mode)%3;
+
+    if(mode==MODE0)      start1();
+    else if(mode==MODE1) music1();
+    else if(mode==MODE2) music2();
+
+    delay(500);
 }
 
-int start1(){
-    delay(500);
-    buttonState=digitalRead(9); 
-    if (buttonState ==LOW ) return MODE1;
-    else{
-        analogReference(INTERNAL);
-        int x=analogRead(5);
-        if(x<260){tone(8, 100,100);}
-        else if(x<280){tone(8, 600,100);}
-        else if(x<300){tone(8, 1100,100);}
-        else if(x<320){tone(8, 1600,100);}
-        else if(x<340){tone(8, 2100,100);}
-        else if(x<360){tone(8, 2600,100);}
-        else if(x<380){tone(8, 3100,100);}
-        else if(x<400){tone(8, 3600,100);}
-        else if(x<420){tone(8, 4100,100);}
-        else if(x<440){tone(8, 4600,100);}
-        else{tone(8, 5100,100);}
-        delay(1000);
-    }
-    return MODE0;
+void start1(){
+    analogReference(INTERNAL);
+    int x=analogRead(5);
+    if(x<260) tone(8, 100,100);
+    else if(x<280) tone(8,  600,100);
+    else if(x<300) tone(8, 1100,100);
+    else if(x<320) tone(8, 1600,100);
+    else if(x<340) tone(8, 2100,100);
+    else if(x<360) tone(8, 2600,100);
+    else if(x<380) tone(8, 3100,100);
+    else if(x<400) tone(8, 3600,100);
+    else if(x<420) tone(8, 4100,100);
+    else if(x<440) tone(8, 4600,100);
+    else tone(8, 5100,100);
+    delay(1000);
 }
 
-int music1(){
-    delay(500);
-    buttonState=1;
-    for (int thisNote = 0; thisNote < 82; thisNote++) { 
-       buttonState=digitalRead(9); 
-       if (buttonState ==LOW ) return MODE2;
+void music1(){
+    for (int thisNote = 0; thisNote < 82; thisNote++) {
        if(thisNote == 0){
             digitalWrite(5,LOW);
             digitalWrite(6,LOW);
@@ -158,12 +150,9 @@ int music1(){
         int pause = duration * 1.5; //音符の間で時間をあける
         delay(pause);
     }
-    return MODE1;
 }
 
-int music2(){
-    delay(500);
-    buttonState=1;
+void music2(){
     digitalWrite(0, LOW);
     digitalWrite(1, LOW);
     digitalWrite(2, LOW);
@@ -175,8 +164,6 @@ int music2(){
     digitalWrite(13, LOW);
 
     for (int thisNote = 0; thisNote < 68; thisNote++) {
-        buttonState=digitalRead(9); 
-        if (buttonState ==LOW ) return MODE0;
         digitalWrite(5,HIGH);
         digitalWrite(6,HIGH);
         digitalWrite(7,HIGH);
@@ -190,5 +177,4 @@ int music2(){
         
         delay(pause);
     }
-    return MODE2;
 }
