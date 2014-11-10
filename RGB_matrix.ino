@@ -70,12 +70,12 @@ void tutorial(){
     while(1){
         lighting(pattern1,1500);  //pattern1を1500[ms]出力し続ける
 
-        byte pattern2;
+        byte pattern2[9];
         setAll(pattern2,RED);    //すべて同じ色ならsetAll()で設定可能
         lighting(pattern2,800);     //pattern2を800[ms]出力し続ける
 
         setAll(pattern2,OFF);     //pattern2に上書き
-        lightning(pattern2,2000);     //pattern2を2000[ms]出力し続ける
+        lighting(pattern2,2000);     //pattern2を2000[ms]出力し続ける
     }
 }
 
@@ -83,7 +83,7 @@ void setAll(byte data[],byte color){
     for(int i=0;i<9;i++) data[i]=color;
 }
 
-void lighting(byte data[],int wait){
+void lighting(byte data[],unsigned long wait){
     unsigned long begin = millis();
     while( (millis()-begin)>wait ) lighting(data);
 }
