@@ -37,14 +37,14 @@
 
     analogReference(INTERNAL);
 
-    tutorial();
+    // tutorial();
 }
 
 void loop(){
     demo1();
 }
 
-//700[ms]ごとに
+//700[ms]ごとに発光LEDを遷移
 void demo1(){
     byte pattern[9];
     for(int i=0;i<9;i++){
