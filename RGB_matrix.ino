@@ -44,18 +44,13 @@ void loop(){
 }
 
 void start1(){
-    int x = analogRead(5);
-    if(x<260)      tone(8, 100,100);
-    else if(x<280) tone(8,  600,100);
-    else if(x<300) tone(8, 1100,100);
-    else if(x<320) tone(8, 1600,100);
-    else if(x<340) tone(8, 2100,100);
-    else if(x<360) tone(8, 2600,100);
-    else if(x<380) tone(8, 3100,100);
-    else if(x<400) tone(8, 3600,100);
-    else if(x<420) tone(8, 4100,100);
-    else if(x<440) tone(8, 4600,100);
-    else           tone(8, 5100,100);
+    //電源電圧を取得して11段階で評価
+    //[0:260以下][1:280以下]...[9:440以下][10:440を超える]
+    int voltage = constrain( analogRead(5)/20 - 13,0,10 );
+
+    //電圧に対応した音程を算出[100~5100]
+    int pitch = 100 + 500*voltage;
+    tone(8, pitch, 100);
     delay(1000);
 }
 
