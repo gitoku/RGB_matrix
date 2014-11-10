@@ -1,20 +1,20 @@
 #include "sounds.h"
 
 void setup() {
-    pinMode(8, OUTPUT); 
-    pinMode(9, INPUT_PULLUP); 
-    pinMode(5, OUTPUT);//カソード下
-    pinMode(6, OUTPUT);//カソード中
-    pinMode(7, OUTPUT);//カソード上
-    pinMode(0, OUTPUT);//アノード１
-    pinMode(1, OUTPUT);//アノード２
-    pinMode(2, OUTPUT);//アノード３
-    pinMode(3, OUTPUT);//アノード４
-    pinMode(4, OUTPUT);//アノード５
-    pinMode(10, OUTPUT);//アノード６
-    pinMode(11, OUTPUT);//アノード７
-    pinMode(12, OUTPUT);//アノード８
-    pinMode(13, OUTPUT);//アノード９
+    pinMode( 0, OUTPUT);
+    pinMode( 1, OUTPUT);
+    pinMode( 2, OUTPUT);
+    pinMode( 3, OUTPUT);
+    pinMode( 4, OUTPUT);
+    pinMode( 5, OUTPUT);
+    pinMode( 6, OUTPUT);
+    pinMode( 7, OUTPUT);
+    pinMode( 8, OUTPUT); 
+    pinMode( 9, INPUT_PULLUP); 
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+    pinMode(13, OUTPUT);
 }
 
 void loop() {
@@ -166,21 +166,20 @@ void loop() {
     digitalWrite(13, LOW);
 
     for (int thisNote = 0; thisNote < 68; thisNote++) {
+        buttonState=digitalRead(9); 
+        if (buttonState ==LOW ) {goto start;}
+        digitalWrite(5,HIGH);
+        digitalWrite(6,HIGH);
+        digitalWrite(7,HIGH);
+        int duration = 1000/noteDurations2[thisNote];//発音時間を定める
 
-    buttonState=digitalRead(9); 
-    if (buttonState ==LOW ) {goto start;}
-    digitalWrite(5,HIGH);
-    digitalWrite(6,HIGH);
-    digitalWrite(7,HIGH);
-    int duration = 1000/noteDurations2[thisNote];//発音時間を定める
-
-    tone(8, melody2[thisNote],duration);   //発音 
-    digitalWrite(5,LOW);
-    digitalWrite(6,LOW);
-    digitalWrite(7,LOW);
-    int pause = duration * 1.5;  //音符の間で時間をあける
-    
-    delay(pause);
+        tone(8, melody2[thisNote],duration);   //発音 
+        digitalWrite(5,LOW);
+        digitalWrite(6,LOW);
+        digitalWrite(7,LOW);
+        int pause = duration * 1.5;  //音符の間で時間をあける
+        
+        delay(pause);
     } 
     goto music2;  
 }
