@@ -1,6 +1,6 @@
 #include "sounds.h"
 
-void setup() {
+void setup(){
     pinMode( 0, OUTPUT);
     pinMode( 1, OUTPUT);
     pinMode( 2, OUTPUT);
@@ -25,13 +25,15 @@ void setup() {
     digitalWrite(11, LOW);
     digitalWrite(12, LOW);
     digitalWrite(13, LOW);
+
+    analogReference(INTERNAL);
 }
 
-const int MODE0=0,MODE1=1,MODE2=2;
-
-void loop() {
+void loop(){
+    const int MODE0=0,MODE1=1,MODE2=2;
     static int mode = MODE0;
 
+    //このタイミングでスイッチ押されていれば、モード変更
     if(!digitalRead(9)) mode=(++mode)%3;
 
     if(mode==MODE0)      start1();
@@ -42,9 +44,8 @@ void loop() {
 }
 
 void start1(){
-    analogReference(INTERNAL);
-    int x=analogRead(5);
-    if(x<260) tone(8, 100,100);
+    int x = analogRead(5);
+    if(x<260)      tone(8, 100,100);
     else if(x<280) tone(8,  600,100);
     else if(x<300) tone(8, 1100,100);
     else if(x<320) tone(8, 1600,100);
@@ -54,7 +55,7 @@ void start1(){
     else if(x<400) tone(8, 3600,100);
     else if(x<420) tone(8, 4100,100);
     else if(x<440) tone(8, 4600,100);
-    else tone(8, 5100,100);
+    else           tone(8, 5100,100);
     delay(1000);
 }
 
@@ -65,82 +66,82 @@ void music1(){
             digitalWrite(6,LOW);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==5){
+        else if(thisNote==5){
             digitalWrite(5,HIGH);
             digitalWrite(6,LOW);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==10){
+        else if(thisNote==10){
             digitalWrite(5,LOW);
             digitalWrite(6,HIGH);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==15){
+        else if(thisNote==15){
             digitalWrite(5,LOW);
             digitalWrite(6,LOW);
             digitalWrite(7,HIGH);
         } 
-        else if  (thisNote==20){
+        else if(thisNote==20){
             digitalWrite(5,HIGH);
             digitalWrite(6,LOW);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==25){
+        else if(thisNote==25){
             digitalWrite(5,LOW);
             digitalWrite(6,HIGH);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==30){
+        else if(thisNote==30){
             digitalWrite(5,LOW);
             digitalWrite(6,LOW);
             digitalWrite(7,HIGH);
         }
-        else if  (thisNote==35){
+        else if(thisNote==35){
             digitalWrite(5,HIGH);
             digitalWrite(6,LOW);
             digitalWrite(7,HIGH);
         } 
-        else if  (thisNote==40){
+        else if(thisNote==40){
             digitalWrite(5,HIGH);
             digitalWrite(6,HIGH);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==45){
+        else if(thisNote==45){
             digitalWrite(5,LOW);
             digitalWrite(6,HIGH);
             digitalWrite(7,HIGH);
         }
-        else if  (thisNote==50){
+        else if(thisNote==50){
             digitalWrite(5,HIGH);
             digitalWrite(6,LOW);
             digitalWrite(7,HIGH);
         }
-        else if  (thisNote==55){
+        else if(thisNote==55){
             digitalWrite(5,HIGH);
             digitalWrite(6,HIGH);
             digitalWrite(7,LOW);
         } 
-        else if  (thisNote==60){
+        else if(thisNote==60){
             digitalWrite(5,LOW);
             digitalWrite(6,HIGH);
             digitalWrite(7,HIGH);
         }
-        else if  (thisNote==65){
+        else if(thisNote==65){
             digitalWrite(5,HIGH);
             digitalWrite(6,LOW);
             digitalWrite(7,HIGH);
         }
-        else if  (thisNote==70){
+        else if(thisNote==70){
             digitalWrite(5,HIGH);
             digitalWrite(6,HIGH);
             digitalWrite(7,LOW);
         }
-        else if  (thisNote==75){
+        else if(thisNote==75){
             digitalWrite(5,LOW);
             digitalWrite(6,HIGH);
             digitalWrite(7,HIGH);
         } 
-        else if  (thisNote==80){
+        else if(thisNote==80){
             digitalWrite(5,HIGH);
             digitalWrite(6,HIGH);
             digitalWrite(7,HIGH);
