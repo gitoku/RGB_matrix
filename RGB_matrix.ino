@@ -89,7 +89,7 @@ void lighting(byte data[],int interval){
 
 //9個のLEDのON/OFF出力
 void ledWrite(byte data[],byte bit){
-    const int pins=[0,1,2,3,4,10,11,12,13];
+    const int pins[]={0,1,2,3,4,10,11,12,13};
     for(int i=0;i<9;i++) digiWrite( pins[i], !bitRead(data[i],bit));
 }
 
