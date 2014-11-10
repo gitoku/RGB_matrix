@@ -36,14 +36,14 @@ void loop(){
     //このタイミングでスイッチ押されていれば、モード変更
     if(!digitalRead(9)) mode=(++mode)%3;
 
-    if(mode==MODE0)      start1();
+    if(mode==MODE0)      voltageTesting();
     else if(mode==MODE1) music1();
     else if(mode==MODE2) music2();
 
     delay(500);
 }
 
-void start1(){
+void voltageTesting(){
     //電源電圧を取得して11段階で評価
     //[0:260以下][1:280以下]...[9:440以下][10:440を超える]
     int voltage = constrain( analogRead(5)/20 - 13,0,10 );
