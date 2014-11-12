@@ -13,9 +13,9 @@ Pin assign
 |d2      |OUT     |Anode3
 |d3      |OUT     |Anode4
 |d4      |OUT     |Anode5
-|d5      |OUT     |Cathode red?
-|d6      |OUT     |Cathode blue?
-|d7      |OUT     |Cathode green?
+|d5      |OUT     |Cathode green
+|d6      |OUT     |Cathode blue
+|d7      |OUT     |Cathode red
 |d8      |OUT     |Buzzer
 |d9      |PULLUP  |Tact switch
 |d10     |OUT     |Anode6

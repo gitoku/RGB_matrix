@@ -15,6 +15,25 @@ void setup(){
 void loop(){
     // tutorial();
     demo();
+    play(melody1,noteDurations1,82);
+}
+
+
+int play(int melodyArr[],int durationArr[],int length){
+	static unsigned long stopTime = 0;
+	static int now = 0;
+	static int nowSound;
+
+	if(millis()>stopTime){ 
+		int duration = 1000/durationArr[now];
+		nowSound = melodyArr[now];
+		tone(BUZZER_PIN,nowSound,duration);
+		stopTime = millis() + (duration*3)/2;
+		now++;
+	}
+
+	if( now > length+1 ) return 0;	//再生終了
+	else return nowSound;	//再生中
 }
 
 
