@@ -23,16 +23,18 @@ void loop(){
     
     //スイッチが押されるまでmodeA
     while( digitalRead(SWITCH_PIN) ) modeA();
+    song1.stop();
+    delay(50);
 
     //スイッチが離されるまで待つ
-    delay(100);
     while( !digitalRead(SWITCH_PIN) );
 
     //スイッチが押されるまでmodeB
     while( digitalRead(SWITCH_PIN) ) modeB();
+    song2.stop();
+    delay(50);
 
     //スイッチが離されるまで待つ
-    delay(100);
     while( !digitalRead(SWITCH_PIN) );
 
 }
