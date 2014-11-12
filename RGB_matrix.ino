@@ -11,13 +11,34 @@ PlayMelody song2(BUZZER_PIN);
 void setup(){
     pinMode( SWITCH_PIN, INPUT_PULLUP); 
     analogReference(INTERNAL);
+
     Led::init();
+    Led::setInterval(20);
+
     song1.setMelody(melody1,noteDurations1,82);
     song2.setMelody(melody2,noteDurations2,68);
 }
 
 void loop(){
+    
+    //スイッチが押されるまでmodeA
+    while( digitalRead(SWITCH_PIN) ) modeA();
 
+    //スイッチが離されるまで待つ
+    delay(100);
+    while( !digitalRead(SWITCH_PIN) );
+
+    //スイッチが押されるまでmodeB
+    while( digitalRead(SWITCH_PIN) ) modeB();
+
+    //スイッチが離されるまで待つ
+    delay(100);
+    while( !digitalRead(SWITCH_PIN) );
+
+}
+
+
+void modeA(){
     //音が変わるたびに発光箇所が変わる
     song1.play();
     while( song1.isPlaying() ){ 
@@ -28,8 +49,10 @@ void loop(){
         Led::lighting();
     }
     song1.stop();
-    delay(1000);
-    
+    delay(500);
+}
+
+void modeB(){
     //音の高さによって色が変わる
     song2.play();
     while( song2.isPlaying() ){ 
@@ -39,10 +62,8 @@ void loop(){
         Led::lighting();
     }
     song2.stop();
-    delay(1000);
-
+    delay(500);
 }
-
 
 
 void tutorial(){
