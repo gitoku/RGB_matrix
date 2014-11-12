@@ -1,13 +1,15 @@
 #include "digiRW.h"
 
-#define RED B001
-#define GREEN B010
-#define BLUE B100
-#define CYAN B110
-#define YELLOW B011
-#define MAGENTA B101
-#define WHITE B111
-#define OFF B000
+enum LedColor {
+    RED = B001,
+    GREEN = B010,
+    BLUE = B100,
+    CYAN = B110,
+    YELLOW = B011,
+    MAGENTA = B101,
+    WHITE = B111,
+    OFF = B000
+};
 
  void ledInit(){
     pinMode( 0, OUTPUT);
@@ -34,26 +36,26 @@
 }
 
 
-void setAll(byte data[],byte color){
+void setAll(LedColor data[],LedColor color){
     for(int i=0;i<9;i++) data[i]=color;
 }
 
 
 //色ごとのLEDのON/OFF出力(Anode:正論理)
-void colorWrite(byte color){
+void colorWrite(LedColor color){
     digiWrite( 5, color&RED);
     digiWrite( 6, color&GREEN);
     digiWrite( 7, color&BLUE);
 }
 
 //9個のLEDのON/OFF出力(Cathode:負論理)
-void ledWrite(byte data[],byte bit){
+void ledWrite(LedColor data[],byte bit){
     const int pins[]={0,1,2,3,4,10,11,12,13};
     for(int i=0;i<9;i++) digiWrite( pins[i], !bitRead(data[i],bit));
 }
 
 
-void lighting(byte data[]){
+void lighting(LedColor data[]){
     const int INTERVAL=10;
     static unsigned long last_time=0;
     
@@ -80,7 +82,7 @@ void lighting(byte data[]){
 }
 
 
-void lighting(byte data[],unsigned long wait){
+void lighting(LedColor data[],unsigned long wait){
     unsigned long begin = millis();
     while( (millis()-begin)>wait ) lighting(data);
 }
