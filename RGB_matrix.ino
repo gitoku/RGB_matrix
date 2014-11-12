@@ -1,40 +1,34 @@
 #include "sounds.h"
+#include "playMelody.h"
 #include "led_fullcolor_9.h"
 
 #define BUZZER_PIN 8
 #define SWITCH_PIN 9
 
+PlayMelody song1(BUZZER_PIN);
+PlayMelody song2(BUZZER_PIN);
 
 void setup(){
-    pinMode( BUZZER_PIN, OUTPUT); 
     pinMode( SWITCH_PIN, INPUT_PULLUP); 
     analogReference(INTERNAL);
     Led::init();
+    song1.setMelody(melody1,noteDurations1,82);
+    song2.setMelody(melody2,noteDurations2,68);
 }
 
 void loop(){
     // tutorial();
-    demo();
-    play(melody1,noteDurations1,82);
+
+    while( song1.play() == 0) demo();
+    song1.stop();
+    delay(1000);
+
+    while( song2.play() == 0) demo();
+    song2.stop();
+    delay(1000);
+
 }
 
-
-int play(int melodyArr[],int durationArr[],int length){
-	static unsigned long stopTime = 0;
-	static int now = 0;
-	static int nowSound;
-
-	if(millis()>stopTime){ 
-		int duration = 1000/durationArr[now];
-		nowSound = melodyArr[now];
-		tone(BUZZER_PIN,nowSound,duration);
-		stopTime = millis() + (duration*3)/2;
-		now++;
-	}
-
-	if( now > length+1 ) return 0;	//再生終了
-	else return nowSound;	//再生中
-}
 
 
 void tutorial(){
