@@ -16,7 +16,7 @@ namespace Led{
     LedColor output[9];
     int interval;
     const int cat_pins[]={0,1,2,3,4,10,11,12,13};
-    const int ano_pins[]={5,6,7};
+    const int ano_pins[]={7,5,6};
     
     //public
     void init();    //初期化
