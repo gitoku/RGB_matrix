@@ -35,7 +35,7 @@ Files
 |sounds.h|メロディを記述|
 |README.md|このファイル|
 |LICENCE|The MIT License|
-|reference**(フォルダ)**|参考プロジェクト|
+|[reference]|参考プロジェクト|
 
 
 How to Use
