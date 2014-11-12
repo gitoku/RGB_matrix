@@ -19,11 +19,11 @@ void setup(){
 void loop(){
     // tutorial();
 
-    while( song1.play() == 0) demo();
+    while( song1.play() ) demo();
     song1.stop();
     delay(1000);
 
-    while( song2.play() == 0) demo();
+    while( song2.play() ) demo();
     song2.stop();
     delay(1000);
 
