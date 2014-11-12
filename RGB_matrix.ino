@@ -1,5 +1,5 @@
 #include "sounds.h"
-#include "dynamic_fullcolor_9.h"
+#include "led_fullcolor_9.h"
 
 #define BUZZER_PIN 8
 #define SWITCH_PIN 9
