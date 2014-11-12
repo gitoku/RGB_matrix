@@ -2,7 +2,7 @@ class PlayMelody{
 	public:
 		PlayMelody(int _pin){ pin = _pin; };
 		void setMelody(int* _melodyArr,int* _durationArr,int _length);	//メロディーの設定
-		int play();	//再生(戻り値[true:新しい音の出力][false:前回と同じ音を出力])
+		int play();	//再生(戻り値[1:新しい音の出力][0:前回と同じ音を出力])
 		void pause();	//一時停止、再び再生するときは停止したところから
 		void stop();	//停止、再び再生するときははじめから
 		void moveTo(int _position);	//再生位置移動
@@ -27,7 +27,7 @@ void PlayMelody::setMelody(int* _melodyArr,int* _durationArr,int _length){
 	length = _length;
 	stopTime = 0;
 	position = 0;
-	nowSound = 1;
+	nowSound = 0;
     pinMode( pin, OUTPUT); 
 }
 
@@ -40,17 +40,20 @@ int PlayMelody::play(){
 		tone(pin,nowSound,nowDuration);
 		stopTime = millis() + (nowDuration*3)/2;
 		position++;
+		return 1;
 	}
 
-	return nowSound;
+	return 0;
 }
 
 void PlayMelody::pause(){
 	noTone(pin);
+	nowSound = 0;
 }
 
 void PlayMelody::stop(){
 	noTone(pin);
+	nowSound = 0;
 	position = 0;
 }
 

@@ -83,14 +83,15 @@ classとして定義している
 
 #### functions
 	PlayMelody(int pin);
-	void setMelody(int* melodyArr,int* durationArr,int _length);	//メロディーの設定
-	int play();	//再生(戻り値[0:再生終了][その他:再生中の音程])
+	void setMelody(int* _melodyArr,int* _durationArr,int _length);	//メロディーの設定
+	int play();	//再生(戻り値[1:新しい音の出力][0:前回と同じ音を出力])
 	void pause();	//一時停止、再び再生するときは停止したところから
 	void stop();	//停止、再び再生するときははじめから
 	void moveTo(int _position);	//再生位置移動
 	int getPosition();	//再生位置を返す
 	int getPitch();	//再生中の音程を返す
 	int getDuration();	//再生中の音の残り再生時間を返す
+	int isPlaying();	//戻り値[0:再生終了][その他:再生中の音程]
 
 #### sample
 曲の再生と1000[ms]の無音を交互に繰り返すスケッチ
@@ -105,7 +106,8 @@ classとして定義している
 	    song1.setMelody(melody1,noteDurations1,82);
 	}
 	void loop(){
-	    while( song1.play() );
+		song1.play();
+	    while( song1.isPlaying() ) song1.play();
 	    song1.stop();
 	    delay(1000);
 	}

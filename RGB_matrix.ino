@@ -19,6 +19,7 @@ void setup(){
 void loop(){
 
     //音が変わるたびに発光箇所が変わる
+    song1.play();
     while( song1.isPlaying() ){ 
         static int cnt=0;
         cnt += song1.play();
@@ -30,6 +31,7 @@ void loop(){
     delay(1000);
     
     //音の高さによって色が変わる
+    song2.play();
     while( song2.isPlaying() ){ 
         song2.play();
         LedColor color = int2color( song2.getPitch() );
