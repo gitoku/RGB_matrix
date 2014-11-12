@@ -17,18 +17,21 @@ namespace Led{
     int interval;
     const int cat_pins[]={0,1,2,3,4,10,11,12,13};
     const int ano_pins[]={5,6,7};
+    
+    //public
+    void init();    //初期化
+    void setInterval(int val);  //ダイナミック点灯制御の切り替え周期[ms]
+    void set(byte bit,LedColor color);  //{bit}番目のLEDを{color}色に設定
+    void setAll(LedColor color);    //すべてのLEDを{color}色に設定
+    void lighting();    //設定された状態に発光({interval}[ms]以内に定期的に呼び出しする必要あり)
+    void lighting(LedColor data[]); //{data}の定義どうりに発光({interval}[ms]以内に定期的に呼び出しする必要あり)
+    void lightingWhile(unsigned long wait);    //設定された状態に{wait}[ms]発光
+    void lightingWhile(LedColor data[],unsigned long wait); //{data}の定義どうりに{wait}[ms]発光
 
-    void init();
-    void setInterval(int val);
-    void set(byte bit,LedColor color);
-    void setAll(LedColor color);
-    void copy(LedColor in[],LedColor out[]);
-    void colorWrite(LedColor color);
-    void ledWrite(LedColor data[],byte bit);
-    void lighting();
-    void lighting(LedColor data[]);
-    void lightingWhile(LedColor data[],unsigned long wait);
-    void lightingWhile(unsigned long wait);
+    //private
+    void copy9(LedColor in[],LedColor out[]);    //要素9のLedColor配列{in}を同サイズの{out}にコピー
+    void colorWrite(LedColor color);    //アノード側LEDを{color}に設定して出力
+    void ledWrite(LedColor data[],byte bit);    //カソード側LEDを{data}の定義どうり出力(ただしアノード側状態を{bit}で指定)
 }
 
  void Led::init(){
@@ -54,7 +57,7 @@ void Led::setAll(LedColor color){
     for(int i=0;i<9;i++) output[i]=color;
 }
 
-void Led::copy(LedColor in[],LedColor out[]){
+void Led::copy9(LedColor in[],LedColor out[]){
     for(int i=0;i<9;i++) out[i]=in[i];
 }
 
@@ -98,7 +101,7 @@ void Led::lighting(){
 }
 
 void Led::lighting(LedColor data[]){
-    copy(data,output);
+    copy9(data,output);
     lighting();
 }
 
