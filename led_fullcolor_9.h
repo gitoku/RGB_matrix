@@ -15,11 +15,16 @@ enum LedColor {
 namespace Led{
     LedColor output[9];
     int interval;
+    const int cat_pins[]={0,1,2,3,4,10,11,12,13};
+    const int ano_pins[]={5,6,7};
+
     void init();
     void setInterval(int val);
     void set(byte bit,LedColor color);
     void setAll(LedColor color);
     void copy(LedColor in[],LedColor out[]);
+    void colorWrite(LedColor color);
+    void ledWrite(LedColor data[],byte bit);
     void lighting();
     void lighting(LedColor data[]);
     void lightingWhile(LedColor data[],unsigned long wait);
@@ -27,27 +32,11 @@ namespace Led{
 }
 
  void Led::init(){
-    pinMode( 0, OUTPUT);
-    pinMode( 1, OUTPUT);
-    pinMode( 2, OUTPUT);
-    pinMode( 3, OUTPUT);
-    pinMode( 4, OUTPUT);
-    pinMode( 5, OUTPUT);
-    pinMode( 6, OUTPUT);
-    pinMode( 7, OUTPUT);
-    pinMode(10, OUTPUT);
-    pinMode(11, OUTPUT);
-    pinMode(12, OUTPUT);
-    pinMode(13, OUTPUT);
-    digiWrite( 0, LOW);
-    digiWrite( 1, LOW);
-    digiWrite( 2, LOW);
-    digiWrite( 3, LOW);
-    digiWrite( 4, LOW);
-    digiWrite(10, LOW);
-    digiWrite(11, LOW);
-    digiWrite(12, LOW);
-    digiWrite(13, LOW);
+    for(int i=0; i<9; i++){ 
+        pinMode( cat_pins[i], OUTPUT);
+        digiWrite(cat_pins[i],LOW);
+    }
+    for(int i=0; i<3; i++) pinMode( ano_pins[i], OUTPUT);
 
     setAll(OFF);
     interval=10;
@@ -71,16 +60,15 @@ void Led::copy(LedColor in[],LedColor out[]){
 
 
 //色ごとのLEDのON/OFF出力(Anode:正論理)
-void colorWrite(LedColor color){
-    digiWrite( 5, color&RED);
-    digiWrite( 6, color&GREEN);
-    digiWrite( 7, color&BLUE);
+void Led::colorWrite(LedColor color){
+    digiWrite( ano_pins[0], color&RED);
+    digiWrite( ano_pins[1], color&GREEN);
+    digiWrite( ano_pins[2], color&BLUE);
 }
 
 //9個のLEDのON/OFF出力(Cathode:負論理)
-void ledWrite(LedColor data[],byte bit){
-    const int pins[]={0,1,2,3,4,10,11,12,13};
-    for(int i=0;i<9;i++) digiWrite( pins[i], !bitRead(data[i],bit));
+void Led::ledWrite(LedColor data[],byte bit){
+    for(int i=0;i<9;i++) digiWrite( cat_pins[i], !bitRead(data[i],bit));
 }
 
 
