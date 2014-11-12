@@ -17,13 +17,25 @@ void setup(){
 }
 
 void loop(){
-    // tutorial();
 
-    while( song1.play() ) demo();
+    //音が変わるたびに発光箇所が変わる
+    while( song1.isPlaying() ){ 
+        static int cnt=0;
+        cnt += song1.play();
+        Led::setAll(OFF);
+        Led::set(cnt%9,WHITE);
+        Led::lighting();
+    }
     song1.stop();
     delay(1000);
-
-    while( song2.play() ) demo();
+    
+    //音の高さによって色が変わる
+    while( song2.isPlaying() ){ 
+        song2.play();
+        LedColor color = int2color( song2.getPitch() );
+        Led::setAll(color);
+        Led::lighting();
+    }
     song2.stop();
     delay(1000);
 
@@ -61,5 +73,18 @@ void demo(){
         Led::setAll(OFF);
         Led::set(i,WHITE);
         Led::lightingWhile(700);
+    }
+}
+
+LedColor int2color(int num){
+    switch (num%8) {
+        case 0: return OFF;
+        case 1: return RED;
+        case 2: return GREEN;
+        case 3: return BLUE;
+        case 4: return CYAN;
+        case 5: return MAGENTA;
+        case 6: return YELLOW;
+        case 7: return WHITE;
     }
 }
