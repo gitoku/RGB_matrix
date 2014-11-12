@@ -11,7 +11,15 @@ enum LedColor {
     OFF = B000
 };
 
- void ledInit(){
+
+namespace Led{
+    void init();
+    void setAll(LedColor data[],LedColor color);
+    void lighting(LedColor data[]);
+    void lighting(LedColor data[],unsigned long wait);
+}
+
+ void Led::init(){
     pinMode( 0, OUTPUT);
     pinMode( 1, OUTPUT);
     pinMode( 2, OUTPUT);
@@ -36,7 +44,7 @@ enum LedColor {
 }
 
 
-void setAll(LedColor data[],LedColor color){
+void Led::setAll(LedColor data[],LedColor color){
     for(int i=0;i<9;i++) data[i]=color;
 }
 
@@ -55,7 +63,7 @@ void ledWrite(LedColor data[],byte bit){
 }
 
 
-void lighting(LedColor data[]){
+void Led::lighting(LedColor data[]){
     const int INTERVAL=10;
     static unsigned long last_time=0;
     
@@ -82,7 +90,7 @@ void lighting(LedColor data[]){
 }
 
 
-void lighting(LedColor data[],unsigned long wait){
+void Led::lighting(LedColor data[],unsigned long wait){
     unsigned long begin = millis();
     while( (millis()-begin)>wait ) lighting(data);
 }
