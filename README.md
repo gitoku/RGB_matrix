@@ -3,6 +3,7 @@ RGB matrix
 
 八頭ものづくり教室(第三回)スケッチ
 
+![](reference/2014-11-13/DSC07873.JPG)
 
 Pin assign
 ----------
