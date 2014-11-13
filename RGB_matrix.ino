@@ -27,7 +27,7 @@ void loop(){
         delay(500);
         song1.play();
         while( song1.isPlaying() || !isPress() ){ 
-            static int cnt=0;
+            static unsigned long cnt=0;
             cnt += song1.play();
             Led::setAll(OFF);
             Led::set(cnt%9,WHITE);
@@ -49,6 +49,10 @@ void loop(){
             song2.play();
             LedColor color = int2color( song2.getPitch() );
             Led::setAll(color);
+            Led::set(1,OFF);
+            Led::set(2,OFF);
+            Led::set(7,OFF);
+            Led::set(8,OFF);
             Led::lighting();
         }
         song2.stop();
