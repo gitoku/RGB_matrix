@@ -23,34 +23,38 @@ void setup(){
 void loop(){
     
     //音が変わるたびに発光箇所が変わる
-    song1.play();
-    while( song1.isPlaying() || !isPress() ){ 
-        static int cnt=0;
-        cnt += song1.play();
+    while( !isPress() ){
+        delay(500);
+        song1.play();
+        while( song1.isPlaying() || !isPress() ){ 
+            static int cnt=0;
+            cnt += song1.play();
+            Led::setAll(OFF);
+            Led::set(cnt%9,WHITE);
+            Led::lighting();
+        }
+        song1.stop();
         Led::setAll(OFF);
-        Led::set(cnt%9,WHITE);
         Led::lighting();
     }
-    song1.stop();
-    Led::setAll(OFF);
-    Led::lighting();
-    delay(200);
     while( isPress() );  //スイッチが離されるまで待つ
 
 
 
     //音の高さによって色が変わる
-    song2.play();
-    while( song2.isPlaying() || !isPress()){ 
+    while( !isPress() ){
+        delay(500);
         song2.play();
-        LedColor color = int2color( song2.getPitch() );
-        Led::setAll(color);
+        while( song2.isPlaying() || !isPress()){ 
+            song2.play();
+            LedColor color = int2color( song2.getPitch() );
+            Led::setAll(color);
+            Led::lighting();
+        }
+        song2.stop();
+        Led::setAll(OFF);
         Led::lighting();
     }
-    song2.stop();
-    Led::setAll(OFF);
-    Led::lighting();
-    delay(200);
     while( isPress() );  //スイッチが離されるまで待つ
 
 }
