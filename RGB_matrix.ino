@@ -4,6 +4,7 @@
 
 #define BUZZER_PIN 8
 #define SWITCH_PIN 9
+#define isPress() digitalRead(SWITCH_PIN)
 
 PlayMelody song1(BUZZER_PIN);
 PlayMelody song2(BUZZER_PIN);
@@ -21,29 +22,9 @@ void setup(){
 
 void loop(){
     
-    //スイッチが押されるまでmodeA
-    while( digitalRead(SWITCH_PIN) ) modeA();
-    song1.stop();
-    delay(50);
-
-    //スイッチが離されるまで待つ
-    while( !digitalRead(SWITCH_PIN) );
-
-    //スイッチが押されるまでmodeB
-    while( digitalRead(SWITCH_PIN) ) modeB();
-    song2.stop();
-    delay(50);
-
-    //スイッチが離されるまで待つ
-    while( !digitalRead(SWITCH_PIN) );
-
-}
-
-
-void modeA(){
     //音が変わるたびに発光箇所が変わる
     song1.play();
-    while( song1.isPlaying() ){ 
+    while( song1.isPlaying() || !isPress() ){ 
         static int cnt=0;
         cnt += song1.play();
         Led::setAll(OFF);
@@ -51,55 +32,29 @@ void modeA(){
         Led::lighting();
     }
     song1.stop();
-    delay(500);
-}
+    Led::setAll(OFF);
+    Led::lighting();
+    delay(200);
+    while( isPress() );  //スイッチが離されるまで待つ
 
-void modeB(){
+
+
     //音の高さによって色が変わる
     song2.play();
-    while( song2.isPlaying() ){ 
+    while( song2.isPlaying() || !isPress()){ 
         song2.play();
         LedColor color = int2color( song2.getPitch() );
         Led::setAll(color);
         Led::lighting();
     }
     song2.stop();
-    delay(500);
-}
-
-
-void tutorial(){
-    LedColor pattern1[9];
-    pattern1[0]=RED;    //[RED,GREEN,BLUE]で色を指定
-    pattern1[1]=GREEN;
-    pattern1[2]=BLUE;
-    pattern1[3]=CYAN;    //[CYAN,YELLOW,MAGENTA]からも選択可能
-    pattern1[4]=YELLOW;
-    pattern1[5]=MAGENTA;
-    pattern1[6]=WHITE;   //[WHITE]を選択可能
-    pattern1[7]=OFF;     //光らせない時は[OFF]
-    pattern1[8]=OFF;
-    Led::lightingWhile(pattern1,1500);  //pattern1を1500[ms]出力し続ける
-
     Led::setAll(OFF);
-    Led::set(0,BLUE);    //set(led,color):指定ledを指定色に設定
-    Led::set(3,RED);
-    Led::set(5,GREEN);
-    Led::set(8,BLUE);
-    Led::lightingWhile(800);     //設定済みの色で800[ms]出力し続ける
+    Led::lighting();
+    delay(200);
+    while( isPress() );  //スイッチが離されるまで待つ
 
-    Led::setAll(OFF);     //すべて同じ色ならsetAll()で設定可能
-    Led::lightingWhile(2000);     //設定済みの色で2000[ms]出力し続ける
 }
 
-void demo(){
-    //700[ms]ごとに発光LEDを遷移
-    for(int i=0;i<9;i++){
-        Led::setAll(OFF);
-        Led::set(i,WHITE);
-        Led::lightingWhile(700);
-    }
-}
 
 LedColor int2color(int num){
     switch (num%8) {
