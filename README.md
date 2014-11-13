@@ -9,10 +9,10 @@ Schematic
 ---------
 
 ### 全体
-![](reference/2014-11-13/sche1.JPG)
+![](reference/2014-11-13/sche1.png)
 
 ### LED部
-![](reference/2014-11-13/sche2.JPG)
+![](reference/2014-11-13/sche2.png)
 
 Pin assign
 ----------
