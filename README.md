@@ -5,6 +5,15 @@ RGB matrix
 
 ![](reference/2014-11-13/DSC07873.JPG)
 
+Schematic
+---------
+
+### 全体
+![](reference/2014-11-13/sche1.JPG)
+
+### LED部
+![](reference/2014-11-13/sche2.JPG)
+
 Pin assign
 ----------
 |pin name|pin mode|connect circuit|
