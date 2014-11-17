@@ -81,6 +81,7 @@ void Led::lighting(){
     
     //前回実行(青色発光開始時)からinterval[ms]待つ
     while( (millis()-last_time) < interval );
+    
 
     //red
     colorWrite(OFF);

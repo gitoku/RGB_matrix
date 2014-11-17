@@ -4,8 +4,7 @@
 
 #define BUZZER_PIN 8
 #define SWITCH_PIN 9
-//#define isPress() digitalRead(SWITCH_PIN)
-#define isPress() (false)
+#define isPress() (!digitalRead(SWITCH_PIN))
 
 PlayMelody song1(BUZZER_PIN);
 PlayMelody song2(BUZZER_PIN);
@@ -15,13 +14,13 @@ void setup(){
     analogReference(INTERNAL);
 
     Led::init();
-    Led::setInterval(20);
+    Led::setInterval(5);
 
     song1.setMelody(melody1,noteDurations1,82);
     song2.setMelody(melody2,noteDurations2,68);
     
-    Serial.begin(115200);
-    Serial.println("Ready.");
+//    Serial.begin(115200);
+//    Serial.println("Ready.");
 }
 
 void loop(){
@@ -39,7 +38,7 @@ void loop(){
         }
         song1.stop();
         Led::setAll(OFF);
-//        Led::lighting();
+        Led::lighting();
     }
     while( isPress() );  //スイッチが離されるまで待つ
 
@@ -49,12 +48,12 @@ void loop(){
     while( !isPress() ){
         delay(500);
         song2.play();
-        while( song2.isPlaying() || !isPress()){ 
+        while( song2.isPlaying() && !isPress()){ 
             song2.play();
             LedColor color = int2color( song2.getPitch() );
             Led::setAll(color);
             Led::set(1,OFF);
-            Led::set(2,OFF);
+            Led::set(3,OFF);
             Led::set(7,OFF);
             Led::set(8,OFF);
             Led::lighting();
@@ -62,7 +61,6 @@ void loop(){
         song2.stop();
         Led::setAll(OFF);
         Led::lighting();
-        Serial.println("_");
     }
     while( isPress() );  //スイッチが離されるまで待つ
 
