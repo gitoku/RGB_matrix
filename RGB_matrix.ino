@@ -35,10 +35,7 @@ void loop(){
             cnt += song1.play();
             Led::setAll(OFF);
             Led::set(cnt%9,WHITE);
-//            Led::lighting();
-            Serial.print(song1.isPlaying());
-            Serial.print("_");
-            Serial.println( song1.isPlaying() && !isPress());
+            Led::lighting();
         }
         song1.stop();
         Led::setAll(OFF);

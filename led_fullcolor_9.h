@@ -80,7 +80,10 @@ void Led::lighting(){
     static unsigned long last_time=0;
     
     //前回実行(青色発光開始時)からinterval[ms]待つ
-    while( (millis()-last_time) > interval );
+    while( (millis()-last_time) > interval ){
+      Serial.print((millis()-last_time));
+      Serial.print("¥t");
+      Serial.println(interval);
 
     //red
     colorWrite(OFF);
