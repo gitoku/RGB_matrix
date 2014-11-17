@@ -80,7 +80,7 @@ void Led::lighting(){
     static unsigned long last_time=0;
     
     //前回実行(青色発光開始時)からinterval[ms]待つ
-    while( (millis()-last_time) < interval );
+    while( (millis()-last_time) < (unsigned long)interval );
     
 
     //red

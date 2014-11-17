@@ -6,37 +6,51 @@
 #define SWITCH_PIN 9
 #define isPress() (!digitalRead(SWITCH_PIN))
 
-PlayMelody song1(BUZZER_PIN);
-PlayMelody song2(BUZZER_PIN);
+PlayMelody melodyA(BUZZER_PIN);
+PlayMelody melodyB(BUZZER_PIN);
+PlayMelody melodyC(BUZZER_PIN);
+
 
 void setup(){
     pinMode( SWITCH_PIN, INPUT_PULLUP); 
     analogReference(INTERNAL);
+    randomSeed(analogRead(0));
 
     Led::init();
-    Led::setInterval(5);
+    Led::setInterval(3);
 
-    song1.setMelody(melody1,noteDurations1,82);
-    song2.setMelody(melody2,noteDurations2,68);
-    
-//    Serial.begin(115200);
-//    Serial.println("Ready.");
+    melodyA.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
+    melodyB.setMelody( senbonzakura_Melody, senbonzakura_Duration, senbonzakura_Length);
+    melodyC.setMelody( ninjaribanban_Melody, ninjaribanban_Duration, ninjaribanban_Length);
 }
+//曲リスト
+//[shikinouta] 四季の歌     音符数：83
+//[haurunomame] ハウルのメインテーマ  音符数：69
+//[takibi] たきび            音符数：49
+//[wakeup] Wake up(120) 
+//[rpg] RPG(sekai no owari)46
+//[oboroduki] おぼろ月夜　　音符数：61
+//[ninnjaribanban] ニンジャりバンバン（114） 
+//[kutsuganaru] くつがなる       音符数：66
+//[mikannnohanasakuoka] みかんの花咲く丘  　音符数：56
+//[senbonzakura] 千本桜(配信用)112 
+//[hakonehachiri] 箱根八里    音符数:163
+
 
 void loop(){
     
     //音が変わるたびに発光箇所が変わる
     while( !isPress() ){
         delay(500);
-        song1.play();
-        while( song1.isPlaying() && !isPress() ){ 
+        melodyA.play();
+        while( melodyA.isPlaying() && !isPress() ){ 
             static unsigned long cnt=0;
-            cnt += song1.play();
+            cnt += melodyA.play();
             Led::setAll(OFF);
             Led::set(cnt%9,WHITE);
             Led::lighting();
         }
-        song1.stop();
+        melodyA.stop();
         Led::setAll(OFF);
         Led::lighting();
     }
@@ -47,23 +61,36 @@ void loop(){
     //音の高さによって色が変わる
     while( !isPress() ){
         delay(500);
-        song2.play();
-        while( song2.isPlaying() && !isPress()){ 
-            song2.play();
-            LedColor color = int2color( song2.getPitch() );
+        melodyB.play();
+        while( melodyB.isPlaying() && !isPress()){ 
+            melodyB.play();
+            LedColor color = int2color( melodyB.getPitch()%7+1 );
             Led::setAll(color);
-            Led::set(1,OFF);
-            Led::set(3,OFF);
-            Led::set(7,OFF);
-            Led::set(8,OFF);
             Led::lighting();
         }
-        song2.stop();
+        melodyB.stop();
         Led::setAll(OFF);
         Led::lighting();
     }
     while( isPress() );  //スイッチが離されるまで待つ
 
+
+  
+    //とにかくカラフル
+    while( !isPress() ){
+        delay(500);
+        melodyC.play();
+        while( melodyC.isPlaying() && !isPress() ){ 
+            if( melodyC.play() ){
+                for(int i=0;i<3;i++) Led::set(random(0,8),int2color(random(0,7)));
+            }
+            Led::lighting();
+        }
+        melodyC.stop();
+        Led::setAll(OFF);
+        Led::lighting();
+    }
+    while( isPress() );  //スイッチが離されるまで待つ
 }
 
 
