@@ -18,6 +18,7 @@ void setup(){
 
     song1.setMelody(melody1,noteDurations1,82);
     song2.setMelody(melody2,noteDurations2,68);
+    
 }
 
 void loop(){

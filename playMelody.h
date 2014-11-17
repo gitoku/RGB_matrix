@@ -1,3 +1,5 @@
+#include "arduino.h"
+
 class PlayMelody{
 	public:
 		PlayMelody(int _pin){ pin = _pin; };
