@@ -81,9 +81,9 @@ void loop(){
         delay(500);
         melodyC.play();
         while( melodyC.isPlaying() && !isPress() ){ 
-            if( melodyC.play() ){
-                for(int i=0;i<3;i++) Led::set(random(0,8),int2color(random(0,7)));
-            }
+            if( melodyC.play() )
+                for(int i=0;i<3;i++) 
+                    Led::set(random(0,8),int2color(random(0,7)));
             Led::lighting();
         }
         melodyC.stop();

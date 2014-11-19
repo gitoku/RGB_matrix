@@ -33,6 +33,7 @@ void PlayMelody::setMelody(int* _melodyArr,int* _durationArr,int _length){
     pinMode( pin, OUTPUT); 
 }
 
+
 int PlayMelody::play(){
 	if( position > length+1 ) nowSound = 0;	//再生終了
 
