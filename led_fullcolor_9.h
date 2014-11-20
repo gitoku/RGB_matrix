@@ -25,14 +25,14 @@ namespace Led{
     void set(byte bit,LedColor color);  //{bit}番目のLEDを{color}色に設定
     void setAll(LedColor color);    //すべてのLEDを{color}色に設定
     void lighting();    //設定された状態に発光({interval}[ms]以内に定期的に呼び出しする必要あり)
-    void lighting(LedColor data[]); //{data}の定義どうりに発光({interval}[ms]以内に定期的に呼び出しする必要あり)
+    void lighting(LedColor data[]); //{data}の定義どおりに発光({interval}[ms]以内に定期的に呼び出しする必要あり)
     void lightingWhile(unsigned long wait);    //設定された状態に{wait}[ms]発光
-    void lightingWhile(LedColor data[],unsigned long wait); //{data}のどうりに{wait}[ms]発光
+    void lightingWhile(LedColor data[],unsigned long wait); //{data}のどおりに{wait}[ms]発光
 
     //private
     void copy9(LedColor in[],LedColor out[]);    //要素9のLedColor配列{in}を同サイズの{out}にコピー
     void colorWrite(LedColor color);    //アノード側LEDを{color}に設定して出力
-    void ledWrite(LedColor data[],byte bit);    //カソード側LEDを{data}のどうり出力(ただしアノード側状態を{bit}で指定)
+    void ledWrite(LedColor data[],byte bit);    //カソード側LEDを{data}のどおり出力(ただしアノード側状態を{bit}で指定)
 }
 
  void Led::init(){

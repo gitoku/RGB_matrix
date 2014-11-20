@@ -61,9 +61,9 @@ void setInterval(int val);  //ダイナミック点灯制御の切り替え周�
 void set(byte bit,LedColor color);  //{bit}番目のLEDを{color}色に設定
 void setAll(LedColor color);    //すべてのLEDを{color}色に設定
 void lighting();    //設定された状態に発光({interval}[ms]以内に定期的に呼び出しする必要あり)
-void lighting(LedColor data[]); //{data}の定義どうりに発光({interval}[ms]以内に定期的に呼び出しする必要あり)
+void lighting(LedColor data[]); //{data}の定義どおりに発光({interval}[ms]以内に定期的に呼び出しする必要あり)
 void lightingWhile(unsigned long wait);    //設定された状態に{wait}[ms]発光
-void lightingWhile(LedColor data[],unsigned long wait); //{data}のどうりに{wait}[ms]発光
+void lightingWhile(LedColor data[],unsigned long wait); //{data}のどおりに{wait}[ms]発光
 ```
 
 #### tutorial
