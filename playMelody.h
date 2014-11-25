@@ -1,4 +1,5 @@
 #include "arduino.h"
+#include <avr/pgmspace.h> 
 
 class PlayMelody{
 	public:

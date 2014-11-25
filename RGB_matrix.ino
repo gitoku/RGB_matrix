@@ -1,5 +1,4 @@
-#include <avr/pgmspace.h> 
-#include "sounds_flash.h"
+#include "sounds.h"
 #include "playMelody.h"
 #include "led_fullcolor_9.h"
 
