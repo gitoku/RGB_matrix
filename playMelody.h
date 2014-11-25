@@ -38,8 +38,8 @@ int PlayMelody::play(){
 	if( position > length+1 ) nowSound = 0;	//再生終了
 
 	else if( millis() > stopTime ){ 	//直前の音の再生が終了したら
-		int nowDuration = 1000/durationArr[position];
-		nowSound = melodyArr[position];
+		int nowDuration = 1000/( pgm_read_word_near(durationArr+position) );
+		nowSound = ( pgm_read_word_near(melodyArr+position) );
 		tone(pin,nowSound,nowDuration);
 		stopTime = millis() + (nowDuration*3)/2;
 		position++;

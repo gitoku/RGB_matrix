@@ -1,4 +1,5 @@
-#include "sounds.h"
+#include <avr/pgmspace.h> 
+#include "sounds_flash.h"
 #include "playMelody.h"
 #include "led_fullcolor_9.h"
 
@@ -20,7 +21,7 @@ void setup(){
 
 //曲リスト
 //[shikinouta] 四季の歌     音符数：83
-//[haurunomame] ハウルのメインテーマ  音符数：69
+//[haurunomaintame] ハウルのメインテーマ  音符数：69
 //[takibi] たきび            音符数：49
 //[wakeup] Wake up(120) 
 //[rpg] RPG(sekai no owari)46
@@ -34,6 +35,26 @@ void setup(){
 
 void loop(){
     
+
+    
+    
+        //とにかくカラフル        
+    melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
+    while( patternRandom3() );   //スイッチが押されるまで繰り返す
+    while( isPress() );  //スイッチが離されるまで待つ
+    
+    
+        //とにかくカラフル        
+    melody.setMelody( shikinouta_Melody, shikinouta_Duration, shikinouta_Length);
+    while( patternRandom3() );   //スイッチが押されるまで繰り返す
+    while( isPress() );  //スイッチが離されるまで待つ
+    
+    
+        //とにかくカラフル        
+    melody.setMelody( wakeup_Melody, wakeup_Duration, wakeup_Length);
+    while( patternRandom3() );   //スイッチが押されるまで繰り返す
+    while( isPress() );  //スイッチが離されるまで待つ
+
     //音が変わるたびに発光箇所が変わる
     melody.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
     while( patternFlushPoint() );//スイッチが押されるまで繰り返す
@@ -48,6 +69,12 @@ void loop(){
   
     //とにかくカラフル        
     melody.setMelody( ninjaribanban_Melody, ninjaribanban_Duration, ninjaribanban_Length);
+    while( patternRandom3() );   //スイッチが押されるまで繰り返す
+    while( isPress() );  //スイッチが離されるまで待つ
+    
+    
+        //とにかくカラフル        
+    melody.setMelody( takibi_Melody, takibi_Duration, takibi_Length);
     while( patternRandom3() );   //スイッチが押されるまで繰り返す
     while( isPress() );  //スイッチが離されるまで待つ
 }

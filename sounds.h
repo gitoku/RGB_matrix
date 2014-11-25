@@ -11,6 +11,8 @@
 //[senbonzakura] 千本桜(配信用)112 
 //[hakonehachiri] 箱根八里    音符数:163
 
+#include <avr/pgmspace.h> 
+
 #define NOTE_A1  55//ラ
 #define NOTE_AS1 58
 #define NOTE_B1  62//シ
@@ -96,14 +98,14 @@
 
 // 四季の歌     音符数：83
 int shikinouta_Length = 82;
-int shikinouta_Melody[] = {
+PROGMEM prog_int16_t shikinouta_Melody[] = {
 NOTE_E4,NOTE_E4,NOTE_D4,NOTE_C4,NOTE_D4,NOTE_C4,NOTE_B3,NOTE_A3,NOTE_A3,NOTE_A3,NOTE_F4,NOTE_F4,NOTE_E4,NOTE_D4,NOTE_C4,NOTE_D4,NOTE_F4,
 NOTE_E4,NOTE_F4,NOTE_F4,NOTE_E4,NOTE_D4,NOTE_D4,NOTE_F4,NOTE_E4,NOTE_E4,NOTE_C4,NOTE_A3,NOTE_B3,NOTE_E4,NOTE_D4,NOTE_C4,NOTE_B3,NOTE_C4,
 NOTE_A3,NOTE_E4,NOTE_A4,NOTE_C5,NOTE_B4,NOTE_A4,NOTE_B4,NOTE_C5,NOTE_D5,NOTE_B4,NOTE_C5,NOTE_D5,NOTE_E5,NOTE_E5,NOTE_E5,NOTE_D5,NOTE_C5,NOTE_D5,NOTE_C5,NOTE_B4,
 NOTE_A4,NOTE_A4,NOTE_A4,NOTE_F5,NOTE_F5,NOTE_E5,NOTE_D5,NOTE_C5,NOTE_D5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_F5,NOTE_E5,NOTE_D5,NOTE_D5,NOTE_F5,
 NOTE_E5,NOTE_E5,NOTE_C5,NOTE_A4,NOTE_C5,NOTE_B4,NOTE_E5,NOTE_D5,NOTE_C5,NOTE_B4,NOTE_C5,NOTE_A4
 };
-int shikinouta_Duration[] = {
+PROGMEM prog_int16_t shikinouta_Duration[] = {
 4,8,8,16,16,16,16,4,4,2,4,8,8,16,16,16,16,
 1,4,8,8,4,8,8,4,8,8,2,4,4,16,16,16,16,
 2,16,16,16,16,16,16,16,16,16,16,16,1,4,8,8,16,16,16,16,
@@ -115,7 +117,7 @@ int shikinouta_Duration[] = {
 
 // ハウルのメインテーマ  音符数：69
 int haurunomaintame_Length = 68;
-int haurunomaintame_Melody[] = {
+PROGMEM prog_int16_t haurunomaintame_Melody[] = {
   NOTE_AS4,NOTE_C5,NOTE_AS4,NOTE_C5,NOTE_AS4,NOTE_C5,NOTE_A4,NOTE_AS4,NOTE_A4,NOTE_AS4,NOTE_A4,NOTE_AS4,NOTE_G4,NOTE_A4,NOTE_G4,NOTE_A4,NOTE_G4,NOTE_A4,NOTE_FS4,NOTE_E4,NOTE_DS4,
   NOTE_D3,NOTE_A3,NOTE_D4,NOTE_A4,
   NOTE_D4,NOTE_G4,NOTE_AS4,NOTE_D5,NOTE_D5,NOTE_C5,NOTE_AS4,NOTE_A4,NOTE_AS4,
@@ -123,7 +125,7 @@ int haurunomaintame_Melody[] = {
   NOTE_A4,NOTE_D5,NOTE_F5,NOTE_A5,NOTE_G5,NOTE_G5,NOTE_F5,NOTE_E5,NOTE_DS5,NOTE_E5,NOTE_G5,NOTE_F5,
   NOTE_E5,NOTE_D5,NOTE_CS5,NOTE_D5,NOTE_D5,NOTE_C5,NOTE_D5,NOTE_C5,NOTE_AS4,NOTE_A4,NOTE_B4,NOTE_CS5,NOTE_D5
 } ;
-int haurunomaintame_Duration[] = {
+PROGMEM prog_int16_t haurunomaintame_Duration[] = {
   8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,2,
   8,8,8,2,
   4,4,4,2,4,4,4,4,1,
@@ -135,13 +137,13 @@ int haurunomaintame_Duration[] = {
 
 // たきび            音符数：49
 int takibi_Length = 49;
-int takibi_Melody[] = {
+PROGMEM prog_int16_t takibi_Melody[] = {
   NOTE_G4, NOTE_A4, NOTE_G4, NOTE_E4, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_E4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_E4, NOTE_D4,
   NOTE_E4, NOTE_G4, NOTE_G4, NOTE_G4, NOTE_A4, NOTE_C5, NOTE_C5, NOTE_C5, NOTE_G4, NOTE_A4, NOTE_E4, NOTE_D4, NOTE_C4,
   NOTE_D4, NOTE_E4, NOTE_F4, NOTE_E4, NOTE_D4, NOTE_E4, NOTE_G4, NOTE_G4, NOTE_E4, NOTE_G4,
   NOTE_C5, NOTE_C5, NOTE_C5, NOTE_A4, NOTE_G4, NOTE_G4, NOTE_C5, NOTE_C5, NOTE_E4, NOTE_E4, NOTE_D4, NOTE_D4, NOTE_C4,
 };
-int takibi_Duration[] = {
+PROGMEM prog_int16_t takibi_Duration[] = {
   8,8,8,8,8,8,8,8,8,8,8,8,2,
   8,8,8,8,8,8,8,8,8,8,8,8,2,
   3,8,8,8,4,8,8,8,8,2,
@@ -152,7 +154,7 @@ int takibi_Duration[] = {
 
 // Wake up(120)
 int wakeup_Length = 120;
-int wakeup_Melody[] = {
+PROGMEM prog_int16_t wakeup_Melody[] = {
 NOTE_GS4, NOTE_CS5, NOTE_DS5, NOTE_FS5, NOTE_F5, NOTE_FS5, NOTE_F5, NOTE_FS5, NOTE_GS5, NOTE_F5,
 NOTE_GS4, NOTE_CS5, NOTE_DS5, NOTE_FS5, NOTE_F5, NOTE_FS5, NOTE_F5, NOTE_FS5, NOTE_GS5, NOTE_F5,
 NOTE_CS5, NOTE_CS5, NOTE_GS5, NOTE_GS5, NOTE_FS5, NOTE_CS5,
@@ -166,7 +168,7 @@ NOTE_DS5, NOTE_F5, NOTE_FS5, NOTE_DS5, NOTE_FS5, NOTE_AS5, NOTE_GS5, NOTE_FS5, N
 NOTE_CS5, NOTE_DS5,NOTE_R, NOTE_CS5, NOTE_DS5,NOTE_R, NOTE_CS5, NOTE_DS5,NOTE_R, NOTE_CS5, NOTE_DS5,NOTE_R, NOTE_FS5, NOTE_F5,
 NOTE_CS5, NOTE_DS5,NOTE_R, NOTE_F5, NOTE_G5,NOTE_R, NOTE_GS5, NOTE_AS5
 };
-int wakeup_Duration[] = {
+PROGMEM prog_int16_t wakeup_Duration[] = {
 8,8,8,4,4,
 4,4,4,8,4,
 8,8,8,4,4,
@@ -194,13 +196,13 @@ int wakeup_Duration[] = {
 
 // RPG(sekai no owari)46
 int rpg_Length = 46;
-int rpg_Melody[] = {
+PROGMEM prog_int16_t rpg_Melody[] = {
 NOTE_F5,NOTE_AS5,NOTE_C6,NOTE_D6,NOTE_R,NOTE_D6,NOTE_D6,NOTE_C6,NOTE_AS5,NOTE_C6,NOTE_A5,NOTE_F5,
 NOTE_F5,NOTE_AS5,NOTE_C6,NOTE_D6,NOTE_R,NOTE_D6,NOTE_D6,NOTE_E6,NOTE_F6,NOTE_D6,NOTE_C6,NOTE_C6,NOTE_R,
 NOTE_C6,NOTE_D6,NOTE_E6,NOTE_F6,NOTE_R,NOTE_F6,NOTE_E6,NOTE_F6,NOTE_G6,NOTE_A6,
 NOTE_C6,NOTE_AS6,NOTE_A6,NOTE_G6,NOTE_F6,NOTE_A6,NOTE_AS6,NOTE_A6,NOTE_G6,NOTE_F6
 };
-int rpg_Duration[] = {
+PROGMEM prog_int16_t rpg_Duration[] = {
 8,8,8,4,8,
 8,4,8,8,8,
 4,4,8,8,8,
@@ -215,7 +217,7 @@ int rpg_Duration[] = {
 
 // おぼろ月夜　　音符数：61
 int oboroduki_Length = 61;
-int oboroduki_Melody[] = {
+PROGMEM prog_int16_t oboroduki_Melody[] = {
   NOTE_E5,NOTE_E5,NOTE_C5,NOTE_D5,NOTE_E5,NOTE_G5,
   NOTE_G5,NOTE_A5,NOTE_G5,NOTE_D5,NOTE_E5,NOTE_C5,
   NOTE_D5,NOTE_G5,NOTE_E5,NOTE_G5,NOTE_G5,NOTE_E5,
@@ -228,7 +230,7 @@ int oboroduki_Melody[] = {
   NOTE_A5, NOTE_G5,NOTE_A5,NOTE_E5,NOTE_D5,NOTE_D5,
   NOTE_C5
 };
-int oboroduki_Duration[] = {
+PROGMEM prog_int16_t oboroduki_Duration[] = {
   8,8,4,8,8,8,
   8,8,4,4,4,8,
   8,8,2,8,8,4,
@@ -245,7 +247,7 @@ int oboroduki_Duration[] = {
 
 // ニンジャりバンバン（114）
 int ninjaribanban_Length = 114;
-int ninjaribanban_Melody[] = {
+PROGMEM prog_int16_t ninjaribanban_Melody[] = {
 NOTE_R, NOTE_C5, NOTE_C6, NOTE_AS5, NOTE_G5, NOTE_DS5,
 NOTE_F5, NOTE_F5, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_GS5, NOTE_DS5,
 NOTE_F5, NOTE_F5, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_GS5, NOTE_AS5,
@@ -260,7 +262,7 @@ NOTE_F5, NOTE_F5, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_GS5, NOTE_DS5,
 NOTE_F5, NOTE_F5, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_GS5, NOTE_F6, NOTE_DS6, NOTE_C6, NOTE_GS5,
 NOTE_F5, NOTE_G5, NOTE_GS5, NOTE_G5, NOTE_F5, NOTE_DS5, NOTE_F5, NOTE_R
 };
-int ninjaribanban_Duration[] = {
+PROGMEM prog_int16_t ninjaribanban_Duration[] = {
 8,8,8,8,8,8,4,8,8,8,
 16,16,8,8,4,8,8,8,16,16,
 8,8,4,4,4,8,8,8,8,8,
@@ -279,7 +281,7 @@ int ninjaribanban_Duration[] = {
 
 // くつがなる       音符数：66
 int kutsuganaru_Length = 66;
-int kutsuganaru_Melody[] = {
+PROGMEM prog_int16_t kutsuganaru_Melody[] = {
   NOTE_C4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_R, NOTE_G4, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_R,
   NOTE_E4, NOTE_E4, NOTE_D4, NOTE_C4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_D4, NOTE_C4, NOTE_D4, NOTE_R,
   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_C5, NOTE_A4, NOTE_C5, NOTE_G4,
@@ -289,7 +291,7 @@ int kutsuganaru_Melody[] = {
   NOTE_C5, NOTE_A4, NOTE_C5, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_E4, NOTE_C4,
   NOTE_D4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_D4, NOTE_C4, NOTE_R,
 };
-int kutsuganaru_Duration[] = {
+PROGMEM prog_int16_t kutsuganaru_Duration[] = {
   4,8,8,4,4,4,8,8,4,4,4,8,8,4,8,8,4,8,8,4,4,
   3,8,2,4,8,8,2,3,8,4,8,8,2,4,4,
   2,4,4,4,8,8,4,4,4,8,8,3,8,2,2,
@@ -299,13 +301,13 @@ int kutsuganaru_Duration[] = {
 
 // みかんの花咲く丘  　音符数：56
 int mikannnohanasakuoka_Length = 56;
-int mikannnohanasakuoka_Melody[] = {
+PROGMEM prog_int16_t mikannnohanasakuoka_Melody[] = {
 	NOTE_G4, NOTE_G4, NOTE_E4,NOTE_F4,NOTE_G4, NOTE_A4,NOTE_G4,NOTE_C5,NOTE_B4,NOTE_D5,NOTE_C5, NOTE_A4,NOTE_G4,NOTE_G4, 
    NOTE_A4, NOTE_B4, NOTE_C5,NOTE_D5,NOTE_C5, NOTE_A4,NOTE_G4,NOTE_C5,NOTE_A4,NOTE_G4, NOTE_D4, NOTE_F4,NOTE_E4,NOTE_C4,NOTE_C4,
    NOTE_E4, NOTE_E4, NOTE_C4,NOTE_D4,NOTE_E4, NOTE_G4,NOTE_G4,NOTE_C5,NOTE_G4,NOTE_C5, NOTE_E5, NOTE_D5,NOTE_D5,
    NOTE_E5, NOTE_F5, NOTE_E5,NOTE_D5,NOTE_C5, NOTE_A4,NOTE_G4,NOTE_C5,NOTE_D5,NOTE_E5, NOTE_D5, NOTE_D5,NOTE_C5,NOTE_C5
 };
-int mikannnohanasakuoka_Duration[] = {
+PROGMEM prog_int16_t mikannnohanasakuoka_Duration[] = {
 4,8,4,8,4,8,4,8,8,8,4,8,4,4,
 4,8,4,8,4,8,4,8,4,8,8,8,8,4,4,
 4,8,4,8,4,8,4,4,8,4,8,4,4,
@@ -316,7 +318,7 @@ int mikannnohanasakuoka_Duration[] = {
 
 // 千本桜(配信用)112
 int senbonzakura_Length = 112;
-int senbonzakura_Melody[] = {
+PROGMEM prog_int16_t senbonzakura_Melody[] = {
 NOTE_D5, NOTE_F5,
 NOTE_G5, NOTE_G5, NOTE_G5, NOTE_R, NOTE_A5, NOTE_A5, NOTE_R, NOTE_A5, NOTE_C6, NOTE_D6, NOTE_G5, NOTE_F5, NOTE_A5, NOTE_D5, NOTE_F5,
 NOTE_G5, NOTE_G5, NOTE_G5, NOTE_R,NOTE_A5, NOTE_A5, NOTE_R, NOTE_A5, NOTE_AS5, NOTE_A5, NOTE_G5, NOTE_F5, NOTE_F5, NOTE_D5, NOTE_F5,
@@ -327,7 +329,7 @@ NOTE_G5, NOTE_G5, NOTE_G5, NOTE_R,NOTE_A5, NOTE_A5, NOTE_R, NOTE_A5, NOTE_AS5, N
 NOTE_G5, NOTE_G5, NOTE_G5, NOTE_R,NOTE_A5, NOTE_A5, NOTE_R, NOTE_A5, NOTE_C6, NOTE_D6, NOTE_G5, NOTE_F5, NOTE_A5, NOTE_D5, NOTE_F5,
 NOTE_AS5, NOTE_A5, NOTE_G5, NOTE_F5, NOTE_G5, NOTE_F5, NOTE_A5, NOTE_C6, NOTE_D6
 };
-int senbonzakura_Duration[] = {
+PROGMEM prog_int16_t senbonzakura_Duration[] = {
 8,8,
 8,16,8,16,8,4,8,8,8,8,8,8,4,8,8,
 8,16,8,16,8,4,8,8,8,8,8,8,4,8,8,
@@ -343,7 +345,7 @@ int senbonzakura_Duration[] = {
 
 // 箱根八里    音符数:163
 int hakonehachiri_Length = 163;
-int hakonehachiri_Melody[] = {
+PROGMEM prog_int16_t hakonehachiri_Melody[] = {
   NOTE_C3, NOTE_C3, NOTE_E3, NOTE_E3, NOTE_G3, NOTE_G3, NOTE_G3, NOTE_C4, NOTE_A3, NOTE_A3, NOTE_G3, NOTE_R,
   NOTE_E3, NOTE_E3, NOTE_E3, NOTE_G3, NOTE_E3, NOTE_D3, NOTE_D3, NOTE_E3, NOTE_D3, NOTE_C3, NOTE_R,
   NOTE_C4, NOTE_C4, NOTE_C4, NOTE_A3, NOTE_A3, NOTE_R, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_G3, NOTE_G3, NOTE_R,
@@ -362,7 +364,7 @@ int hakonehachiri_Melody[] = {
   NOTE_G3, NOTE_E3, NOTE_C3, NOTE_D3, NOTE_E3, NOTE_D3, NOTE_C3, NOTE_R,
 };
 
-int hakonehachiri_Duration[] = {
+PROGMEM prog_int16_t hakonehachiri_Duration[] = {
   8,8,8,8,8,8,4,4,8,8,4,4,
   4,8,8,4,4,8,8,8,8,4,4,
   8,4,8,8,8,4,8,4,8,8,8,4,
