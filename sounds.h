@@ -11,6 +11,7 @@
 //[senbonzakura] 千本桜(配信用)112 
 //[hakonehachiri] 箱根八里    音符数:163
 
+#include "led_fullcolor_9.h"
 #include <avr/pgmspace.h> 
 
 #define NOTE_A1  55//ラ
@@ -117,6 +118,24 @@ PROGMEM prog_int16_t shikinouta_Duration[] = {
 
 // ハウルのメインテーマ  音符数：69
 int haurunomaintame_Length = 68;
+int haurunomaintame_ordColor = 
+{
+  0,  //    RED 
+  1,  //    GREEN 
+  1,  //    BLUE 
+  1,  //    CYAN 
+  0,  //    YELLOW 
+  0,  //    MAGENTA 
+  1,  //    WHITE
+}
+
+// LedColor haurunomaintame_ordColor = {RED,GREEN,WHITE};
+LedColor haurunomaintame_jacket = {
+  {RED,RED,RED},
+  {GREEN,GREEN,GREEN},
+  {RED,RED,RED}
+}
+
 PROGMEM prog_int16_t haurunomaintame_Melody[] = {
   NOTE_AS4,NOTE_C5,NOTE_AS4,NOTE_C5,NOTE_AS4,NOTE_C5,NOTE_A4,NOTE_AS4,NOTE_A4,NOTE_AS4,NOTE_A4,NOTE_AS4,NOTE_G4,NOTE_A4,NOTE_G4,NOTE_A4,NOTE_G4,NOTE_A4,NOTE_FS4,NOTE_E4,NOTE_DS4,
   NOTE_D3,NOTE_A3,NOTE_D4,NOTE_A4,
