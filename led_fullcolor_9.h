@@ -1,3 +1,5 @@
+#ifndef led_fullcolor_9_h
+#define led_fullcolor_9_h
 #include "arduino.h"
 #include "digiRW.h"
 
@@ -117,3 +119,4 @@ void Led::lightingWhile(unsigned long wait){
     unsigned long begin = millis();
     while( (millis()-begin)>wait ) lighting();
 }
+#endif

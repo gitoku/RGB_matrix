@@ -125,13 +125,13 @@ int haurunomaintame_ColorSpec[] = {
   1,  //    CYAN 
   0,  //    YELLOW 
   0,  //    MAGENTA 
-  1,  //    WHITE
-}
+  1  //    WHITE
+};
 LedColor haurunomaintame_Jacket[3][3] = {
   {RED,RED,RED},
   {GREEN,GREEN,GREEN},
   {RED,RED,RED}
-}
+};
 
 
 PROGMEM prog_int16_t haurunomaintame_Melody[] = {
