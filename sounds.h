@@ -118,14 +118,8 @@ PROGMEM prog_int16_t shikinouta_Duration[] = {
 
 // ハウルのメインテーマ  音符数：69
 int haurunomaintame_Length = 68;
-int haurunomaintame_ColorSpec[] = {
-  0,  //    RED 
-  1,  //    GREEN 
-  1,  //    BLUE 
-  1,  //    CYAN 
-  0,  //    YELLOW 
-  0,  //    MAGENTA 
-  1  //    WHITE
+LedColor haurunomaintame_Color[] = {
+  GREEN,BLUE,CYAN,WHITE
 };
 LedColor haurunomaintame_Jacket[3][3] = {
   {RED,RED,RED},
