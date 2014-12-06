@@ -120,7 +120,7 @@ int patternRandom3(LedColor enable_color[],int color_num){
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         if( melody.play() )    //新しい音の再生が始まったら
             for(int i=0;i<3;i++)    //３回「ランダムに選んだLEDをランダムな色に設定」する
-                Led::set(random(0,8),int2color(random(0,100),enable_color,color_num));
+                Led::set(random(0,9),int2color(random(0,100),enable_color,color_num));
         Led::lighting();
         if( isPress() ) return false;  //スイッチが押されたら再生停止
     }

@@ -25,11 +25,13 @@ void setup(){
 
 void loop(){
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternRandom3,haurunomaintame_Color);
+    playPattern(patternFlushTurn,haurunomaintame_Color);
 
     melody.setMelody( merrychristmas_Melody, merrychristmas_Duration, merrychristmas_Length);
-    playPattern(patternRandom3Blink,allcolor);
+    playPattern(patternPitch2Color,allcolor);
 
+    melody.setMelody( bell_Melody, bell_Duration, bell_Length);
+    playPattern(patternFlushPointSlow,allcolor);
 
 
 }
