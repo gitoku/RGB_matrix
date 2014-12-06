@@ -43,7 +43,7 @@ Files
 |digiRW.h|高速にIO処理を行うためのライブラリ|
 |playMelody.h|メロディの再生のためのライブラリ|
 |sounds.h|メロディを記述|
-|pattern.h|発光パターンを記述|
+|pattern.ino|発光パターンを記述|
 |README.md|このファイル|
 |LICENCE|The MIT License|
 |[reference]|参考プロジェクト|
@@ -70,14 +70,15 @@ Files
 
 パターンリスト
 -------
+**太字**は動作確認済み
 
 |ソース内名称|光り方|
 |:--|:----------|
-|patternFlushPoint|音が再生されるたびに発光箇所が変化|
+|**patternFlushPoint**|音が再生されるたびに発光箇所が変化|
 |patternFlushPointSlow|3音再生されるたびに発光箇所が変化|
 |patternFlushTurn|音が再生されるたびにLEDが円を描くように発光(色は順に変化)|
-|patternPitch2Color|音の高さに応じてすべてのLEDの色が変わる|
-|patternRandom3|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|
+|**patternPitch2Color**|音の高さに応じてすべてのLEDの色が変わる|
+|**patternRandom3**|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|
 |patternRandom3Blink|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる(点滅)|
 
 

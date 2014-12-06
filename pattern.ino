@@ -74,6 +74,7 @@ int pos2turn(int pos){
     }
 }
 
+
 int patternFlushTurn(LedColor enable_color[],int color_num){
     delay(500);
     melody.play();
