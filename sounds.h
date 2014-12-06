@@ -10,6 +10,8 @@
 //[mikannnohanasakuoka] みかんの花咲く丘  　音符数：56
 //[senbonzakura] 千本桜(配信用)112 
 //[hakonehachiri] 箱根八里    音符数:163
+//[bell]ジングルベル
+//[merrychristmas]We Wish You a Merry Christma
 
 #include "led_fullcolor_9.h"
 #include <avr/pgmspace.h> 

@@ -43,9 +43,42 @@ Files
 |digiRW.h|高速にIO処理を行うためのライブラリ|
 |playMelody.h|メロディの再生のためのライブラリ|
 |sounds.h|メロディを記述|
+|pattern.h|発光パターンを記述|
 |README.md|このファイル|
 |LICENCE|The MIT License|
 |[reference]|参考プロジェクト|
+
+曲リスト
+-------
+
+|曲名|ソース内名称|
+|:--|:----------|
+|四季の歌  |shikinouta|
+|ハウルのメインテーマ  |haurunomaintame|
+|たきび  |takibi|
+|Wake up  |wakeup|
+|RPG(sekai no owari)  |rpg|
+|おぼろ月夜  |oboroduki|
+|ニンジャりバンバン  |ninjaribanban|
+|くつがなる  |kutsuganaru|
+|みかんの花咲く丘  |mikannnohanasakuoka|
+|千本桜(配信用)  |senbonzakura|
+|箱根八里  |hakonehachiri|
+|ジングルベル  |bell|
+|We Wish You a Merry Christma  |merrychristmas|
+|Let It Go(アナと雪の女王) |letitgo|
+
+パターンリスト
+-------
+
+|ソース内名称|光り方|
+|:--|:----------|
+|patternFlushPoint|音が再生されるたびに発光箇所が変化|
+|patternFlushPointSlow|3音再生されるたびに発光箇所が変化|
+|patternFlushTurn|音が再生されるたびにLEDが円を描くように発光(色は順に変化)|
+|patternPitch2Color|音の高さに応じてすべてのLEDの色が変わる|
+|patternRandom3|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|
+|patternRandom3Blink|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる(点滅)|
 
 
 How to Use
@@ -105,26 +138,48 @@ void stop();	//停止、再び再生するときははじめから
 void moveTo(int _position);	//再生位置移動
 int getPosition();	//再生位置を返す
 int getPitch();	//再生中の音程を返す
-int getDuration();	//再生中の音の残り再生時間を返す
+int getDuration();	//再生中の音の再生時間を返す[ms]
+int getRest();	//再生中の音の残り再生時間を返す[ms]
+int getRestRate();	//再生中の音の残り再生時間を返す(1~0)
 int isPlaying();	//戻り値[0:再生終了][その他:再生中の音程]
 ```
 
 #### sample
 曲の再生と1000[ms]の無音を交互に繰り返すスケッチ
 (曲はsound.h内に定義)
-```cpp
-#include "sounds.h"
-#include "playMelody.h"
-#define BUZZER_PIN 8
 
-PlayMelody song1(BUZZER_PIN);
-void setup(){
-    song1.setMelody(melody1,noteDurations1,82);
-}
-void loop(){
-	song1.play();
-    while( song1.isPlaying() ) song1.play();
-    song1.stop();
-    delay(1000);
-}
+```cpp
+	#include "sounds.h"
+	#include "playMelody.h"
+	#include "led_fullcolor_9.h"
+
+	#define BUZZER_PIN 8
+	#define SWITCH_PIN 9
+	#define playPattern(x,y) playPat(x,y,(int)(sizeof(y)/sizeof(y[0])))
+
+	int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
+	LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
+
+
+	PlayMelody melody(BUZZER_PIN);
+	
+	PlayMelody song1(BUZZER_PIN);
+	void setup(){
+		song1.setMelody(melody1,noteDurations1,82);
+		pinMode( SWITCH_PIN, INPUT_PULLUP); 
+		analogReference(INTERNAL);
+		randomSeed(analogRead(0));
+
+		Led::init();
+		Led::setInterval(3);
+	}
+	void loop(){
+		song1.play();
+		while( song1.isPlaying() ) song1.play();
+		song1.stop();
+		delay(1000);
+		melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
+		playPattern(patternA,allcolor);    
+	}
 ```
+

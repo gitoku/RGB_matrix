@@ -24,6 +24,10 @@ LedColor int2color(int num,LedColor enable_color[],int color_num){
 }
 
 
+
+
+
+
 int patternFlushPoint(LedColor enable_color[],int color_num){
     delay(500);
     melody.play();
