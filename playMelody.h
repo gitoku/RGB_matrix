@@ -12,6 +12,8 @@ class PlayMelody{
 		int getPosition();	//再生位置を返す
 		int getPitch();	//再生中の音程を返す
 		int getDuration();	//再生中の音の残り再生時間を返す
+		int getRest();
+		float getRestRate();
 		int isPlaying();	//戻り値[0:再生終了][その他:再生中の音程]
 	private:
 		int pin;
@@ -21,6 +23,7 @@ class PlayMelody{
 		unsigned long stopTime;
 		int position;
 		int nowSound;
+		int nowDuration;
 };
 
 
@@ -39,10 +42,11 @@ int PlayMelody::play(){
 	if( position > length+1 ) nowSound = 0;	//再生終了
 
 	else if( millis() > stopTime ){ 	//直前の音の再生が終了したら
-		int nowDuration = 1000/( pgm_read_word_near(durationArr+position) );
+		int duration = 1000/( pgm_read_word_near(durationArr+position) );
 		nowSound = ( pgm_read_word_near(melodyArr+position) );
-		tone(pin,nowSound,nowDuration);
-		stopTime = millis() + (nowDuration*3)/2;
+		tone(pin,nowSound,duration);
+		nowDuration = (duration*3)/2;
+		stopTime = millis() + nowDuration;
 		position++;
 		return 1;
 	}
@@ -69,5 +73,7 @@ void PlayMelody::moveTo(int _position){
 
 int PlayMelody::getPosition(){ return position; };
 int PlayMelody::getPitch(){ return nowSound; };
-int PlayMelody::getDuration(){ return (stopTime-millis()); };
+int PlayMelody::getRest(){ return (stopTime-millis()); };
+int PlayMelody::getDuration(){ return nowDuration; };
+float PlayMelody::getRestRate(){ return ((float)getRest()/(float)getDuration()); };
 int PlayMelody::isPlaying(){ return nowSound; };

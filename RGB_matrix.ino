@@ -39,37 +39,36 @@ void setup(){
 
 void loop(){
 
-    //とにかくカラフル        
+      
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
     playPattern(patternRandom3,haurunomaintame_Color);
     
-    
-    //とにかくカラフル        
-    melody.setMelody( shikinouta_Melody, shikinouta_Duration, shikinouta_Length);
-    playPattern(patternRandom3,allcolor);
-    
-    
-    //とにかくカラフル        
-    melody.setMelody( wakeup_Melody, wakeup_Duration, wakeup_Length);
-    playPattern(patternRandom3,allcolor);
-
-    //音が変わるたびに発光箇所が変わる
-    melody.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
-    playPattern(patternFlushPoint,allcolor);
+   
+     
+   // melody.setMelody( shikinouta_Melody, shikinouta_Duration, shikinouta_Length);
+   // playPattern(patternRandom3,allcolor);
+   
+   
+     
+   // melody.setMelody( wakeup_Melody, wakeup_Duration, wakeup_Length);
+   // playPattern(patternRandom3,allcolor);
 
 
-    //音の高さによって色が変わる
-    melody.setMelody( senbonzakura_Melody, senbonzakura_Duration, senbonzakura_Length);
-    playPattern(patternPitch2Color,allcolor);
+   // melody.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
+   // playPattern(patternFlushPoint,allcolor);
 
-  
-    //とにかくカラフル        
-    melody.setMelody( ninjaribanban_Melody, ninjaribanban_Duration, ninjaribanban_Length);
-    playPattern(patternRandom3,allcolor);
-    
-    
-    //とにかくカラフル        
-    melody.setMelody( takibi_Melody, takibi_Duration, takibi_Length);
-    playPattern(patternRandom3,allcolor);
+
+   // melody.setMelody( senbonzakura_Melody, senbonzakura_Duration, senbonzakura_Length);
+   // playPattern(patternPitch2Color,allcolor);
+
+ 
+     
+   // melody.setMelody( ninjaribanban_Melody, ninjaribanban_Duration, ninjaribanban_Length);
+   // playPattern(patternRandom3,allcolor);
+   
+   
+     
+   // melody.setMelody( takibi_Melody, takibi_Duration, takibi_Length);
+   // playPattern(patternRandom3,allcolor);
 }
 
