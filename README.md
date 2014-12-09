@@ -35,7 +35,6 @@ RGB matrix
 |パターンB|音が再生されるたびにLEDの輪が回転|patternFlushC|
 |パターンC|3音再生されるたびに発光色が変化,すべてのLEDは同じ色|patternFlushPointSlow|
 |パターンD|音が再生される都度,LEDが円を描くように発光(色は順に変化)|patternFlushTurn|
-||音が再生される都度,LED(C型)が円を描くように発光(色は固定),あまり綺麗ではないのでお蔵入り|patternFlushTurn|
 |パターンE|音の高さに応じてすべてのLEDの色が変わる|patternPitch2Color|
 |パターンF|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|patternRandom3|
 |パターンG|4音再生されるたびにすべてのLEDの色(ランダム)が変わる,3音目で消灯|patternRandom3Blink|

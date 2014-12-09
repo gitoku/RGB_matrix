@@ -17,7 +17,7 @@ void loop(){
     playPattern(patternFlushC,allcolor);
     
     melody.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
-    playPattern(patternFlushTurnC,allcolor);
+    playPattern(patternRandom3,allcolor);
     
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
     playPattern(patternFlushPoint,haurunomaintame_Color);
