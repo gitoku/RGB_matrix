@@ -60,18 +60,18 @@ void loop(){
 	//playPatternの引数として
 	//	patternFlushPointSlow:パターン
 	//	allcolor:使用する色リスト
-	//を指定すれば、そのパターンで発光開始(タクトスイッチが押されると終了)
+	//を指定すれば、そのパターンで発光&曲再生開始(タクトスイッチが押されると終了)
     playPattern(patternFlushPointSlow,allcolor);
 
 
 
-    //曲名[bell]を設定し、パターン名[patternFlushTurn]で発光開始
+    //曲名[bell]を設定し、パターン名[patternFlushTurn]で発光&曲再生開始
     melody.setMelody( bell_Melody, bell_Duration, bell_Length);
     playPattern(patternFlushTurn,allcolor);
     
 
 
-    //曲名[letitgo]を設定し、パターン名[patternRandom3Blink]で発光開始
+    //曲名[letitgo]を設定し、パターン名[patternRandom3Blink]で発光&曲再生開始
     melody.setMelody( letitgo_Melody, letitgo_Duration, letitgo_Length);
     playPattern(patternRandom3Blink,allcolor);
 
