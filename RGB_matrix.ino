@@ -9,6 +9,7 @@
 
 int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
 LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
+LedColor lll[] = {BLUE,WHITE,CYAN,YELLOW};
 
 
 PlayMelody melody(BUZZER_PIN);
@@ -32,6 +33,9 @@ void loop(){
 
     melody.setMelody( bell_Melody, bell_Duration, bell_Length);
     playPattern(patternFlushPointSlow,allcolor);
+    
+    melody.setMelody( lll_Melody, lll_Duration, lll_Length);
+    playPattern(patternFlushTurn,lll);
 
 
 }
