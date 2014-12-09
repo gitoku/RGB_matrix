@@ -35,7 +35,7 @@ int patternFlushPoint(LedColor enable_color[],int color_num){
         static unsigned long cnt=0;
         cnt += melody.play();
         Led::setAll(OFF);
-        Led::set(cnt%9,enable_color[0]);
+        Led::set(pos2turn(cnt),enable_color[(cnt)%color_num]);
         Led::lighting();
         if( isPress() ) return false;   //スイッチが押されたら再生停止
     }
@@ -45,13 +45,35 @@ int patternFlushPoint(LedColor enable_color[],int color_num){
     return true;
 }
 
+
 int patternFlushPointSlow(LedColor enable_color[],int color_num){
     delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
+        int now = melody.play();
+        cnt += now;
+        if((cnt%4)==1 && now) Led::setAll(enable_color[(cnt/3)%color_num]); //3音再生ごとに色変更
+        Led::lighting();
+        if( isPress() ) return false;   //スイッチが押されたら再生停止
+    }
+    melody.stop();
+    Led::setAll(OFF);
+    Led::lighting();
+    return true;
+}
+
+int patternFlushC(LedColor enable_color[],int color_num){
+    delay(500);
+    melody.play();
+    while( melody.isPlaying() ){   //曲が終わるまで再生を継続
+        static unsigned long cnt=0;
         cnt += melody.play();
-        Led::setAll(enable_color[(cnt%3)%color_num]); //3音再生ごとに色変更
+        Led::setAll(enable_color[0]);
+        Led::set(4,OFF);
+        Led::set(pos2turn(cnt),enable_color[1]);
+        Led::set(pos2turn(cnt+1),enable_color[1]);
+        Led::set(pos2turn(cnt+2),enable_color[1]);
         Led::lighting();
         if( isPress() ) return false;   //スイッチが押されたら再生停止
     }
@@ -85,6 +107,29 @@ int patternFlushTurn(LedColor enable_color[],int color_num){
         pos = (int)(melody.getRestRate()*9)%9;
         if(pos==0) Led::setAll(OFF);
         else Led::set(pos2turn(pos-1),enable_color[cnt%color_num]);
+        Led::lighting();
+        if( isPress() ) return false;   //スイッチが押されたら再生停止
+    }
+    melody.stop();
+    Led::setAll(OFF);
+    Led::lighting();
+    return true;
+}
+
+int patternFlushTurnC(LedColor enable_color[],int color_num){
+    delay(500);
+    melody.play();
+    while( melody.isPlaying() ){   //曲が終わるまで再生を継続
+        static unsigned long cnt=0;
+        static int pos=0;
+        cnt += melody.play();
+        pos = (int)(melody.getRestRate()*9)%9;
+        Led::setAll(enable_color[0]);
+        Led::set(4,OFF);
+        Led::set(pos2turn(pos),OFF);
+        Led::set(pos2turn(pos+1),OFF);
+        Led::set(pos2turn(pos+2),OFF);
+        Led::set(pos2turn(pos+3),OFF);
         Led::lighting();
         if( isPress() ) return false;   //スイッチが押されたら再生停止
     }
@@ -135,11 +180,13 @@ int patternRandom3Blink(LedColor enable_color[],int color_num){
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static int state = 0;
-        state += melody.play();
-        if( state%2 )    //新しい音の再生が始まったら
+        int now = melody.play();
+        state += now;
+        if( state%4==1 && now )    //新しい音の再生が始まったら
             for(int i=0;i<3;i++)    //３回「ランダムに選んだLEDをランダムな色に設定」する
                 for(int j=0;j<9;j++)
                     Led::set(j,int2color(random(0,100),enable_color,color_num));
+        else if( state%4==0 && now) Led::setAll(OFF);
         Led::lighting();
         if( isPress() ) return false;  //スイッチが押されたら再生停止
     }

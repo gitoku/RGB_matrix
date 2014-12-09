@@ -434,8 +434,8 @@ PROGMEM prog_int16_t merrychristmas_Duration[] = {
 };
 
 
-int lll_Length = 63;
-PROGMEM prog_int16_t lll_Melody[] = {
+int letitgo_Length = 63;
+PROGMEM prog_int16_t letitgo_Melody[] = {
 NOTE_R,NOTE_F5,NOTE_G5,NOTE_GS5,NOTE_DS5,NOTE_DS5,NOTE_AS5,NOTE_GS5,
 NOTE_G5,NOTE_F5,NOTE_F5,NOTE_F5,NOTE_F5,NOTE_G5,NOTE_GS5,
 NOTE_F5,NOTE_G5,NOTE_GS5,NOTE_DS5,NOTE_C6,NOTE_AS5,
@@ -445,8 +445,7 @@ NOTE_R,NOTE_GS5,NOTE_GS5,NOTE_G5,NOTE_R,NOTE_DS5,NOTE_R,NOTE_DS5,
 NOTE_R,NOTE_B3,NOTE_CS4,NOTE_CS4,NOTE_C4,NOTE_CS4,NOTE_C4,NOTE_CS4,NOTE_CS4,NOTE_C4,NOTE_GS3,NOTE_R
 };
 
-
-PROGMEM prog_int16_t lll_Duration[] = {
+PROGMEM prog_int16_t letitgo_Duration[] = {
 8,8,8,1,8,8,1,8,
 8,8,8,4,8,4,1,
 8,8,1,8,8,1,

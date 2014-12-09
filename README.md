@@ -5,6 +5,83 @@ RGB matrix
 
 ![](reference/2014-11-13/DSC07873.JPG)
 
+
+曲リスト
+-------
+
+||曲名|スケッチ内名称|
+|:-|:--|:----------|
+|曲1|四季の歌  |shikinouta|
+|曲2|ハウルのメインテーマ  |haurunomaintame|
+|曲3|たきび  |takibi|
+|曲4|Wake up  |wakeup|
+|曲5|RPG(sekai no owari)  |rpg|
+|曲6|おぼろ月夜  |oboroduki|
+|曲7|ニンジャりバンバン  |ninjaribanban|
+|曲8|くつがなる  |kutsuganaru|
+|曲9|みかんの花咲く丘  |mikannnohanasakuoka|
+|曲10|千本桜(配信用)  |senbonzakura|
+|曲11|箱根八里  |hakonehachiri|
+|曲12|ジングルベル  |bell|
+|曲13|We Wish You a Merry Christma  |merrychristmas|
+|曲14|Let It Go(アナと雪の女王) |letitgo|
+
+パターンリスト
+-------
+
+||光り方|スケッチ内名称|
+|:-|:--|:----------|
+|パターンA|音が再生されるたびに発光箇所(一箇所)と色が変化|patternFlushPoint|
+|パターンB|音が再生されるたびにLEDの輪が回転|patternFlushC|
+|パターンC|3音再生されるたびに発光色が変化,すべてのLEDは同じ色|patternFlushPointSlow|
+|パターンD|音が再生される都度,LEDが円を描くように発光(色は順に変化)|patternFlushTurn|
+||音が再生される都度,LED(C型)が円を描くように発光(色は固定),あまり綺麗ではないのでお蔵入り|patternFlushTurn|
+|パターンE|音の高さに応じてすべてのLEDの色が変わる|patternPitch2Color|
+|パターンF|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|patternRandom3|
+|パターンG|4音再生されるたびにすべてのLEDの色(ランダム)が変わる,3音目で消灯|patternRandom3Blink|
+
+
+### 曲とパターンの設定方法
+```cpp
+// これより上は基本的に変更の必要なし
+
+//3つのパターンについてそれぞれ別の曲を再生させている
+//タクトスイッチを押せば次のパターンに変化
+void loop(){
+
+	//曲名[merrychristmas]を設定(曲リストの「スケッチ内名称」を参照のこと)
+	//melody.setMelodyの引数として
+	//	merrychristmas_Melody:音程リスト
+	//	merrychristmas_Duration:音長さリスト
+	//	merrychristmas_Length:曲長さ
+	//を設定している
+    melody.setMelody( merrychristmas_Melody, merrychristmas_Duration, merrychristmas_Length);
+	
+	//パターン名[patternFlushPointSlow]を設定(パターンリストの「スケッチ内名称」を参照のこと)
+	//playPatternの引数として
+	//	patternFlushPointSlow:パターン
+	//	allcolor:使用する色リスト
+	//を指定すれば、そのパターンで発光開始(タクトスイッチが押されると終了)
+    playPattern(patternFlushPointSlow,allcolor);
+
+
+
+    //曲名[bell]を設定し、パターン名[patternFlushTurn]で発光開始
+    melody.setMelody( bell_Melody, bell_Duration, bell_Length);
+    playPattern(patternFlushTurn,allcolor);
+    
+
+
+    //曲名[letitgo]を設定し、パターン名[patternRandom3Blink]で発光開始
+    melody.setMelody( letitgo_Melody, letitgo_Duration, letitgo_Length);
+    playPattern(patternRandom3Blink,allcolor);
+
+
+    //余計なことを書かない
+}
+```
+
+
 Schematic
 ---------
 
@@ -48,41 +125,9 @@ Files
 |LICENCE|The MIT License|
 |[reference]|参考プロジェクト|
 
-曲リスト
--------
-
-|曲名|ソース内名称|
-|:--|:----------|
-|四季の歌  |shikinouta|
-|ハウルのメインテーマ  |haurunomaintame|
-|たきび  |takibi|
-|Wake up  |wakeup|
-|RPG(sekai no owari)  |rpg|
-|おぼろ月夜  |oboroduki|
-|ニンジャりバンバン  |ninjaribanban|
-|くつがなる  |kutsuganaru|
-|みかんの花咲く丘  |mikannnohanasakuoka|
-|千本桜(配信用)  |senbonzakura|
-|箱根八里  |hakonehachiri|
-|ジングルベル  |bell|
-|We Wish You a Merry Christma  |merrychristmas|
-|Let It Go(アナと雪の女王) |letitgo|
-
-パターンリスト
--------
-**太字**は動作確認済み
-
-|ソース内名称|光り方|
-|:--|:----------|
-|**patternFlushPoint**|音が再生されるたびに発光箇所が変化|
-|patternFlushPointSlow|3音再生されるたびに発光箇所が変化|
-|patternFlushTurn|音が再生されるたびにLEDが円を描くように発光(色は順に変化)|
-|**patternPitch2Color**|音の高さに応じてすべてのLEDの色が変わる|
-|**patternRandom3**|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる|
-|patternRandom3Blink|音が再生されるたびに３箇所(ランダム)のLEDの色(ランダム)が変わる(点滅)|
 
 
-How to Use
+How to Use Library
 ----------
 
 ### Led

@@ -9,7 +9,7 @@
 
 int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
 LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
-LedColor lll[] = {BLUE,WHITE,CYAN,YELLOW};
+
 
 
 PlayMelody melody(BUZZER_PIN);
@@ -25,17 +25,23 @@ void setup(){
 
 
 void loop(){
+    melody.setMelody( takibi_Melody, takibi_Duration, takibi_Length);
+    playPattern(patternFlushC,allcolor);
+    
+    melody.setMelody( rpg_Melody, rpg_Duration, rpg_Length);
+    playPattern(patternFlushTurnC,allcolor);
+    
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternFlushTurn,haurunomaintame_Color);
+    playPattern(patternFlushPoint,haurunomaintame_Color);
 
     melody.setMelody( merrychristmas_Melody, merrychristmas_Duration, merrychristmas_Length);
-    playPattern(patternPitch2Color,allcolor);
+    playPattern(patternFlushPointSlow,allcolor);
 
     melody.setMelody( bell_Melody, bell_Duration, bell_Length);
-    playPattern(patternFlushPointSlow,allcolor);
+    playPattern(patternFlushTurn,allcolor);
     
-    melody.setMelody( lll_Melody, lll_Duration, lll_Length);
-    playPattern(patternFlushTurn,lll);
+    melody.setMelody( letitgo_Melody, letitgo_Duration, letitgo_Length);
+    playPattern(patternRandom3Blink,allcolor);
 
 
 }
