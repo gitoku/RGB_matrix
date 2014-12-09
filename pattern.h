@@ -1,3 +1,22 @@
+#ifndef pattern_h
+#define pattern_h
+#include "playMelody.h"
+#include "led_fullcolor_9.h"
+
+
+#define BUZZER_PIN 8
+#define SWITCH_PIN 9
+#define isPress() (!digitalRead(SWITCH_PIN))
+#define playPattern(x,y) playPat(x,y,(int)(sizeof(y)/sizeof(y[0])))
+
+int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
+int pos2turn(int pos);
+LedColor int2color(int num);
+LedColor int2color(int num,LedColor enable_color[],int color_num);
+
+
+PlayMelody melody(BUZZER_PIN);
+LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
 
 
 int playPat(int (*pattern)(LedColor*,int),LedColor enable_color[],int color_num){
@@ -195,3 +214,6 @@ int patternRandom3Blink(LedColor enable_color[],int color_num){
     Led::lighting();
     return true;
 }
+
+
+#endif

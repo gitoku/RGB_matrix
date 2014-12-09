@@ -1,3 +1,6 @@
+#ifndef playmelody_h
+#define playmelody_h
+
 #include "arduino.h"
 #include <avr/pgmspace.h> 
 
@@ -77,3 +80,6 @@ int PlayMelody::getRest(){ return (stopTime-millis()); };
 int PlayMelody::getDuration(){ return nowDuration; };
 float PlayMelody::getRestRate(){ return ((float)getRest()/(float)getDuration()); };
 int PlayMelody::isPlaying(){ return nowSound; };
+
+
+#endif

@@ -1,18 +1,6 @@
 #include "sounds.h"
-#include "playMelody.h"
-#include "led_fullcolor_9.h"
+#include "pattern.h"
 
-#define BUZZER_PIN 8
-#define SWITCH_PIN 9
-#define isPress() (!digitalRead(SWITCH_PIN))
-#define playPattern(x,y) playPat(x,y,(int)(sizeof(y)/sizeof(y[0])))
-
-int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
-LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
-
-
-
-PlayMelody melody(BUZZER_PIN);
 
 void setup(){
     pinMode( SWITCH_PIN, INPUT_PULLUP); 
@@ -42,7 +30,5 @@ void loop(){
     
     melody.setMelody( letitgo_Melody, letitgo_Duration, letitgo_Length);
     playPattern(patternRandom3Blink,allcolor);
-
-
 }
 
