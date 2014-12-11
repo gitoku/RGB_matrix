@@ -8,8 +8,10 @@
 #define SWITCH_PIN 9
 #define isPress() (!digitalRead(SWITCH_PIN))
 #define playPattern(x,y) playPat(x,y,(int)(sizeof(y)/sizeof(y[0])))
+#define playPattern(x,y,z) playPat(x,y,(int)(sizeof(y)/sizeof(y[0])),z)
 
 int playPat(int (*pattern)(LedColor*,int),LedColor*,int);
+int playPat(int (*pattern)(LedColor*,int),LedColor*,int,LedColor*);
 int pos2turn(int pos);
 LedColor int2color(int num);
 LedColor int2color(int num,LedColor enable_color[],int color_num);
@@ -19,10 +21,17 @@ PlayMelody melody(BUZZER_PIN);
 LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
 
 
+int playPat(int (*pattern)(LedColor*,int),LedColor enable_color[],int color_num,LedColor jacket[]){
+    Led::lightingWhile(jacket,500);
+    while( pattern(enable_color,color_num) ) Led::lightingWhile(jacket,500);
+    while( isPress() );
+}
 int playPat(int (*pattern)(LedColor*,int),LedColor enable_color[],int color_num){
     while( pattern(enable_color,color_num) ) delay(500);
     while( isPress() );
 }
+
+
 
 
 LedColor int2color(int num){

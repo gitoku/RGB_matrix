@@ -15,25 +15,25 @@ void setup(){
 
 void loop(){
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternFlushPoint,allcolor);
+    playPattern(patternFlushPoint,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternFlushC,allcolor);
+    playPattern(patternFlushC,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternFlushPointSlow,allcolor);
+    playPattern(patternFlushPointSlow,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternFlushTurn,allcolor);
+    playPattern(patternFlushTurn,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternPitch2Color,allcolor);
+    playPattern(patternPitch2Color,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternRandom3,allcolor);
+    playPattern(patternRandom3,allcolor,haurunomaintame_Jacket);
 
     melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-    playPattern(patternRandom3Blink,allcolor);
+    playPattern(patternRandom3Blink,allcolor,haurunomaintame_Jacket);
 
 }
 

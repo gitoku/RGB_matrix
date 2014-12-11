@@ -123,10 +123,8 @@ int haurunomaintame_Length = 68;
 LedColor haurunomaintame_Color[] = {
   GREEN,BLUE,CYAN,WHITE
 };
-LedColor haurunomaintame_Jacket[3][3] = {
-  {RED,RED,RED},
-  {GREEN,GREEN,GREEN},
-  {RED,RED,RED}
+LedColor haurunomaintame_Jacket[9] = {
+  RED,RED,RED,GREEN,GREEN,GREEN,RED,RED,RED
 };
 
 
