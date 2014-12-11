@@ -9,13 +9,12 @@ void setup(){
 
     Led::init();
     Led::setInterval(3);
+    
+    melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
 }
 
 
 void loop(){
-
-    melody.setMelody( haurunomaintame_Melody, haurunomaintame_Duration, haurunomaintame_Length);
-
     playPattern(patternFlushPoint,allcolor);
     playPattern(patternFlushC,allcolor);
     playPattern(patternFlushPointSlow,allcolor);
