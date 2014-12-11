@@ -20,7 +20,7 @@ LedColor allcolor[7] = {WHITE,RED,GREEN,BLUE,CYAN,YELLOW,MAGENTA};
 
 
 int playPat(int (*pattern)(LedColor*,int),LedColor enable_color[],int color_num){
-    while( pattern(enable_color,color_num) );
+    while( pattern(enable_color,color_num) ) delay(500);
     while( isPress() );
 }
 
@@ -48,7 +48,6 @@ LedColor int2color(int num,LedColor enable_color[],int color_num){
 
 
 int patternFlushPoint(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
@@ -66,7 +65,6 @@ int patternFlushPoint(LedColor enable_color[],int color_num){
 
 
 int patternFlushPointSlow(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
@@ -83,7 +81,6 @@ int patternFlushPointSlow(LedColor enable_color[],int color_num){
 }
 
 int patternFlushC(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
@@ -117,7 +114,6 @@ int pos2turn(int pos){
 
 
 int patternFlushTurn(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
@@ -136,7 +132,6 @@ int patternFlushTurn(LedColor enable_color[],int color_num){
 }
 
 int patternFlushTurnC(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static unsigned long cnt=0;
@@ -160,7 +155,6 @@ int patternFlushTurnC(LedColor enable_color[],int color_num){
 
 
 int patternPitch2Color(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         melody.play();
@@ -179,7 +173,6 @@ int patternPitch2Color(LedColor enable_color[],int color_num){
 
 
 int patternRandom3(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         if( melody.play() )    //新しい音の再生が始まったら
@@ -195,7 +188,6 @@ int patternRandom3(LedColor enable_color[],int color_num){
 }
 
 int patternRandom3Blink(LedColor enable_color[],int color_num){
-    delay(500);
     melody.play();
     while( melody.isPlaying() ){   //曲が終わるまで再生を継続
         static int state = 0;
